@@ -3,6 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerWorkingDirectory>.</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>images\im1.png  images\im2.png  16</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>images\im1.png  images\im2.png  12</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

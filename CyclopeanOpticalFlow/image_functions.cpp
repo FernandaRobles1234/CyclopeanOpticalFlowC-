@@ -5,7 +5,7 @@
 #include <boost/math/interpolators/cardinal_cubic_b_spline.hpp>
 
 
-cv::Mat resize_image(cv::Mat im, int scale) {
+cv::Mat resize_image(const cv::Mat& im, int scale) {
 	int im_rows = im.rows;
 	int im_cols = im.cols;
 
@@ -20,7 +20,7 @@ cv::Mat resize_image(cv::Mat im, int scale) {
 	//return im;
 }
 
-void display_two_images(const cv::Mat &im1, const cv::Mat &im2) {
+void display_two_images(const cv::Mat& im1, const cv::Mat& im2) {
 	// Displaying two images
 	cv::Mat ims;
 	cv::hconcat(im1, im2, ims);
@@ -29,7 +29,7 @@ void display_two_images(const cv::Mat &im1, const cv::Mat &im2) {
 	cv::waitKey(0);
 }
 
-std::vector<std::vector<double>> image_data(const cv::Mat &im) {
+std::vector<std::vector<double>> image_data(const cv::Mat& im) {
 
 	std::vector< std::vector<double>> image_pixels(im.rows, std::vector<double> (im.cols,0));
 
@@ -44,7 +44,7 @@ std::vector<std::vector<double>> image_data(const cv::Mat &im) {
 	return image_pixels;
 }
 
-void print_vector(std::vector<double>& vector) {
+void print_vector(const std::vector<double>& vector) {
 
 		for (const auto col : vector) {
 			std::cout << col << " ";
@@ -52,7 +52,7 @@ void print_vector(std::vector<double>& vector) {
 		std::cout << std::endl;
 }
 
-void print_matrix(const std::vector<std::vector<double>> &vector) {
+void print_matrix(const std::vector<std::vector<double>>& vector) {
 
 	for (const auto row : vector) {
 		for (const auto col : row) {
@@ -62,7 +62,7 @@ void print_matrix(const std::vector<std::vector<double>> &vector) {
 	}
 }
 
-boost::math::interpolators::cardinal_cubic_b_spline<double> function_generation(std::vector<double> line, int size, double start, double step) {
+boost::math::interpolators::cardinal_cubic_b_spline<double> function_generation(const std::vector<double> &line, int size, double start, double step) {
 
 	boost::math::interpolators::cardinal_cubic_b_spline<double> spline(line.data(), size, start, step);
 

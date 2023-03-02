@@ -43,19 +43,20 @@ int main(int argc, char* argv[]) {
 	im2_data = image_data(im2);
 
 	//-------------------------------------------Pyramid test---------------------------------------------------------
+	std::vector<double> row1_data= im1_data[10];
+	std::vector<double> row2_data= im2_data[10];
 
-	for (auto data : im1_data[10]) {
+	for (auto data : row1_data) {
 		std::cout << data << " ";
 	}
 	std::cout << std::endl;
-	std::cout << im1_data[10].size() << std::endl;
+	std::cout << row1_data.size() << std::endl;
 
 	std::vector<double> im1_data_lvl1;
-	im1_data_lvl1 = next_pyramidal_level(im1_data[10]);
-
+	im1_data_lvl1 = next_pyramidal_level(row1_data);
 
 	std::vector<double> im2_data_lvl1;
-	im2_data_lvl1 = next_pyramidal_level(im2_data[10]);
+	im2_data_lvl1 = next_pyramidal_level(row2_data);
 
 	for (auto col : im1_data_lvl1) {
 		std::cout << col << " ";
@@ -63,21 +64,25 @@ int main(int argc, char* argv[]) {
 	std::cout << std::endl;
 	std::cout << im1_data_lvl1.size() << std::endl;
 
-
-	display_vector(im2_data_lvl1, 0, im1_data[10].size(), 2, im1_data[10], 0, im1_data[10].size(), 1);
+	//display_vector(im2_data_lvl1, 0, row2_data.size(), 2, row2_data, 0, row2_data.size(), 1);
 
 	//function_generation
-	boost::math::interpolators::cardinal_cubic_b_spline<double> f1;
-	f1 = function_generation(im1_data[10], im1_data[10].size());
+	/*boost::math::interpolators::cardinal_cubic_b_spline<double> f1;
+	f1 = function_generation(row1_data, row1_data.size());
 	boost::math::interpolators::cardinal_cubic_b_spline<double> f2;
-	f2 = function_generation(im2_data[10], im2_data[10].size());
+	f2 = function_generation(row2_data, row2_data.size());
 
 	boost::math::interpolators::cardinal_cubic_b_spline<double> f1_lvl1;
 	f1_lvl1 = function_generation(im1_data_lvl1, im1_data_lvl1.size(),0, 2);
 	boost::math::interpolators::cardinal_cubic_b_spline<double> f2_lvl1;
-	f2_lvl1 = function_generation(im2_data_lvl1, im2_data_lvl1.size(), 0, 2);
+	f2_lvl1 = function_generation(im2_data_lvl1, im2_data_lvl1.size(), 0, 2);*/
 
-	display_function(f1_lvl1, f1, 0, im1_data[10].size());
+	std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1;
+	list_f1 = pyr_func_gen(row1_data, 3);
+
+	display_function(list_f1[0], list_f1[1], 0, row1_data.size());
+
+	display_function(list_f1[1], list_f1[2], 0, row1_data.size());
 
 	//-------------------------------------------Flow test------------------------------------------------------------
 
@@ -85,15 +90,14 @@ int main(int argc, char* argv[]) {
 	//SinFunc f1(0);
 	//SinFunc f2(-0.5);
 
-	//std::vector<std::vector<double>> v_final;
-	//std::vector<std::vector<double>> list_v0;
+	/*std::vector<std::vector<double>> v_final;
+	std::vector<std::vector<double>> list_v0;
 
-	//list_v0 = uniform_distribution_2d(10, 0, 1);
+	list_v0 = uniform_distribution_2d(10, 0, 1);
 
-	//v = { {0,0} };
-	//v_final = line_test_v0(10, list_v0, f1, f2, 0, im1.cols, 0);
+	v_final = line_test_v0(10, list_v0, f1_lvl1, f2_lvl1, 0, im1.cols, 0, 0.001);
 
-	//line_display_flow(v_final, f1, f2, 0, im1.cols);
+	line_display_flow(v_final, f1_lvl1, f2_lvl1, 0, im1.cols);*/
 
 	return 0;
 }

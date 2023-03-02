@@ -10,7 +10,7 @@
 #include <random>
 
 
-//----------------------------------------------------Temporal Functions in this file----------------------------------------------------
+//----------------------------------------------------Local Functions in this file----------------------------------------------------
 double mean(double data[], int n) {
 	double sum = 0;
 	for (int i = 0; i < n; i++) {
@@ -38,7 +38,7 @@ double covariance(double data1[], double data2[], int n) {
 	return temp / (n - 1);
 }
 
-double PearsonCorrelation(double data1[], double data2[], int n) {
+double pearson_correlation(double data1[], double data2[], int n) {
 	return covariance(data1, data2, n) / (sqrt(variance(data1, n)) * sqrt(variance(data2, n)));
 }
 
@@ -50,7 +50,9 @@ double L2_norm(const std::vector<double>& v) {
 	return sqrt(sum);
 }
 
-std::vector<std::vector<double>> new_values(int size, int e_threshold, std::vector<double> v0, std::vector<std::vector<double>> list_v0) {
+//Check values of new_v0
+//Makea predefined seed for testing purposes
+std::vector<std::vector<double>> new_values(int size, int e_threshold, const std::vector<double>& v0, const std::vector<std::vector<double>>& list_v0) {
 	// Create a random number generator
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -100,12 +102,16 @@ std::vector<std::vector<double>> new_values(int size, int e_threshold, std::vect
 	}
 }
 
-std::vector<double> pick_new_values(std::vector<std::vector<double>> list_v0) {
+std::vector<double> pick_new_values(const std::vector<std::vector<double>>& list_v0) {
 	
 
 	std::vector<std::vector<double>> converged_values;
+	converged_values.reserve(list_v0.size());
 	std::vector<std::vector<double>> ok_values;
+	ok_values.reserve(list_v0.size());
 	std::vector<std::vector<double>> random_values;
+	random_values.reserve(list_v0.size());
+
 	for (auto v0 : list_v0) {
 
 		double v1 = v0[0];
@@ -138,7 +144,7 @@ std::vector<double> pick_new_values(std::vector<std::vector<double>> list_v0) {
 
 //----------------------------------------------------Main Functions----------------------------------------------------
 
-std::vector<double> upgrade_1d(std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold) {
+std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold) {
 
 	std::vector<double> v;
 	v.reserve(4);
@@ -225,7 +231,7 @@ std::vector<double> upgrade_1d(std::vector<double>& v0, double p0, boost::math::
 
 	//We calculate the pearson coefficient
 	double p_correlation;
-	p_correlation = PearsonCorrelation(&y1_set[0], &y2_set[0], (int)y1_set.size());
+	p_correlation = pearson_correlation(&y1_set[0], &y2_set[0], (int)y1_set.size());
 
 	//Not good correlation score
 	if (p_correlation > c_criteria) {
@@ -263,7 +269,7 @@ std::vector<double> upgrade_1d(std::vector<double>& v0, double p0, boost::math::
 }
 
 
-std::vector<std::vector<double>> line_test(int iterations, std::vector<double>& v0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, double start, double end, int e_threshold, double threshold) {
+std::vector<std::vector<double>> line_test(int iterations, const std::vector<double>& v0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, double start, double end, int e_threshold, double threshold) {
 
 	std::vector<double> v = v0;
 	std::vector<std::vector<double>> list_v;
@@ -280,7 +286,7 @@ std::vector<std::vector<double>> line_test(int iterations, std::vector<double>& 
 }
 
 
-std::vector<double> flow_1d_v0(int iterations, std::vector<std::vector<double>>& list_v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold) {
+std::vector<double> flow_1d_v0(int iterations, const std::vector<std::vector<double>>& list_v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold) {
 	int nv_size = (int)list_v0.size();
 
 	std::vector<std::vector<double>> nV;
@@ -319,17 +325,23 @@ std::vector<double> flow_1d_v0(int iterations, std::vector<std::vector<double>>&
 		solution_v.push_back(update_values[i]);
 	}
 
+	assert (solution_v.size() == 3);
+
 	return solution_v;
 }
 
 
-std::vector<std::vector<double>> line_test_v0(int iterations, std::vector<std::vector<double>>& list_v0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, double start, double end, int e_threshold, double threshold) {
-
+std::vector<std::vector<double>> line_test_v0(int iterations, const std::vector<std::vector<double>>& list_v0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, double start, double end, int e_threshold, double threshold) {
+	
+	//flow_1d_v0 output is 3
 	std::vector<double> v;
+	v.reserve(3);
+
 	std::vector<std::vector<double>> list_v;
+	list_v.reserve(end - 1);
 
 	for (double x = start; x < end; x++) {
-
+		
 		v = flow_1d_v0(iterations, list_v0, x, f1, f2, e_threshold, threshold);
 
 		list_v.push_back(v);

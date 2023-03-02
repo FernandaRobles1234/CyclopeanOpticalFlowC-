@@ -107,8 +107,6 @@ int display_vector(std::vector<double> f1, double f1_start, double f1_end, doubl
 		f1_n = f1_n + f1_step;
 	}
 
-
-
 	std::vector<double> y1(f1_x.size());
 	for (int i = 0; i < y1.size(); i++) {
 		y1[i] = f1[i];
