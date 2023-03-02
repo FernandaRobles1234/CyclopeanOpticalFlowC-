@@ -1,0 +1,3 @@
+﻿  pyramid.cpp
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\pyramid.cpp(8,47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.exe
