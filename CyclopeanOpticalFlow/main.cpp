@@ -57,18 +57,22 @@ void estimateOpticalFlow(cv::Mat im1, cv::Mat im2) {
 	f2_pyr = generatePyramidFunctions(row2, test_n);
 
 	std::vector<std::vector<double>> list_v0;
-	//std::vector<std::vector<double>> solution_v;
 	std::vector<double> v;
 
 	list_v0 = uniformDistribution2d(10, 0, 2);
 
-	v = cyclopeanOpticalFlowPoint(10, list_v0, f1_pyr, f2_pyr, 10, 0, 0.01);
+	int test_point = 31;
+
+	v = cyclopeanOpticalFlowPoint(10, list_v0, f1_pyr, f2_pyr, test_point, 0, 0.01);
 
 	std::cout << v[0] << ", " << v[1] << ", " << v[3] << ", " << v[0] + v[1] << std::endl;
 
-	//solution_v = cyclopeanOpticalFlowRow(10, list_v0, f1_pyr, f2_pyr, 0, row1.size(), 0, 0.01);
+	v = testPyramidalFlowPoint(list_v0, test_point, f1_pyr, f2_pyr, 0, 0.01);
 
+	std::cout << v[0] << ", " << v[1] << ", " << v[3] << ", " << v[0] + v[1] << std::endl;
+
+	std::vector<std::vector<double>> solution_v;
+	solution_v = cyclopeanOpticalFlowRow(10, list_v0, f1_pyr, f2_pyr, 0, row1.size(), 0, 0.01);
 	//matrixToTxt(solution_v, "row_test.txt");
-
-	//displayFlowLine(solution_v, f1_pyr[0], f2_pyr[0], 0, row1.size());
+	displayFlowLine(solution_v, f1_pyr[test_n], f2_pyr[test_n], 0, row1.size());
 }

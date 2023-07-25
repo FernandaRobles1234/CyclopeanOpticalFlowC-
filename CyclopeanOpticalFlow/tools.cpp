@@ -5,14 +5,17 @@
 #include <ctime>
 #include "tools.h"
 
+//TODO: Make this a global constant for cyclopeanOpticalFLow as well
+const unsigned int FIXED_SEED = 123; // You can change this value to get different random sequences
+
 std::vector <std::vector<double>> uniformDistribution2d(int size ,double v1, double v2) {
 
     std::vector<std::vector<double>> list_v0;
     list_v0.reserve(size);
 
     // Create a random number generator
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    //std::random_device rd;
+    std::mt19937 gen(FIXED_SEED);
 
     // Create a uniform real distribution object
     std::uniform_real_distribution<double> dist(v1, v2);

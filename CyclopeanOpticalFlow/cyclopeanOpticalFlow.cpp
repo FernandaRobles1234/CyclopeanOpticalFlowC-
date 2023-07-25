@@ -9,6 +9,8 @@
 #include "cyclopeanOpticalFlow.h"
 #include "tools.h"
 
+// Define a constant seed value for the random number generator
+const unsigned int FIXED_SEED = 123; // You can change this value to get different random sequences
 
 #define TOLERANCE 0.0001
 
@@ -59,11 +61,11 @@ static bool isEqualD(double x, double y)
 
 //Check values of new_v0
 //TODO: Makea predefined seed for testing purposes
-std::vector<std::vector<double>> new_values(int size, int e_threshold, const std::vector<double>& v0, const std::vector<std::vector<double>>& list_v0) {
+std::vector<std::vector<double>> new_values(const std::vector<std::vector<double>>& list_v0, int size, const std::vector<double>& v0, int e_threshold) {
 
 	// Create a random number generator
-	std::random_device rd;
-	std::mt19937 gen(rd());
+	//std::random_device rd;
+	std::mt19937 gen(FIXED_SEED);
 
 	std::vector<double> new_v0;
 	std::vector<std::vector<double>> list_new_v0;
@@ -107,7 +109,6 @@ std::vector<std::vector<double>> new_values(int size, int e_threshold, const std
 		return list_new_v0;
 	}
 	else {
-
 		return list_v0;
 	}
 }
@@ -123,7 +124,7 @@ std::vector<double> pick_new_values(const std::vector<std::vector<double>>& list
 	std::vector<std::vector<double>> random_values;
 	random_values.reserve(list_v0.size());
 
-	for (auto v0 : list_v0) {
+	for (std::vector<double> v0 : list_v0) {
 
 		double v1 = v0[0];
 		double v2 = v0[1];
@@ -156,7 +157,7 @@ std::vector<double> pick_new_values(const std::vector<std::vector<double>>& list
 
 //----------------------------------------------------Main Functions----------------------------------------------------
 
-std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold) {
+std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold){
 
 	std::vector<double> v;
 	v.reserve(4);
@@ -279,7 +280,6 @@ std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::
 	}
 }
 
-
 std::vector<double> pyr_flow_1d_v0(int iterations, const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold, double threshold) {
 	
 	int nv_size = (int)list_v0.size();
@@ -299,13 +299,13 @@ std::vector<double> pyr_flow_1d_v0(int iterations, const std::vector<std::vector
 	//pyramidal loop
 	for (int j = list_f1.size() - 1; j >= 0; j--) {
 		//This will only give values that sum up to the magnitude of v Or if v0 = 0, list newv0 is created and fed to the function to try all it's contained values
-		nV = new_values(nv_size, e_threshold, update_values, list_v0);
+		nV = new_values(list_v0, nv_size, update_values, e_threshold);
 
 
 
 		if (update_values[3] == 5) { update_values[3] = 0; }
 
-		for (auto v : nV) {
+		for (std::vector<double> v : nV) {
 
 			//We initialize whith values calculated at nV and last calculated updateValues [[3;; 4]] *)
 			temporal_values = { v[0], v[1], update_values[2], update_values[3] };
@@ -339,7 +339,7 @@ std::vector<double> pyr_flow_1d_v0(int iterations, const std::vector<std::vector
 	return solution_v;
 }
 
-std::vector<double> testPyramidalFlow(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold, double threshold, int iterations) {
+std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold, double threshold, int iterations) {
 
 	int list_v0_size = (int)list_v0.size();
 
@@ -358,11 +358,11 @@ std::vector<double> testPyramidalFlow(const std::vector<std::vector<double>>& li
 	//pyramidal loop
 	for (int j = list_f1.size() - 1; j >= 0; j--) {
 		//This will only give values that sum up to the magnitude of v Or if v0 = 0, list newv0 is created and fed to the function to try all it's contained values
-		nV = new_values(list_v0_size, e_threshold, update_values, list_v0);
+		nV = new_values(list_v0, list_v0_size, update_values, e_threshold);
 
 		if (update_values[3] == 5) { update_values[3] = 0; }
 
-		for (auto v : nV) {
+		for (std::vector<double> v : nV) {
 
 			//We initialize whith values calculated at nV and last calculated updateValues [[3;; 4]] *)
 			temporal_values = { v[0], v[1], update_values[2], update_values[3] };
@@ -407,7 +407,6 @@ std::vector<double> cyclopeanOpticalFlowPoint(int iterations, const std::vector<
 
 	return v;
 }
-
 
 std::vector<std::vector<double>> cyclopeanOpticalFlowRow(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double start, double end, int e_threshold, double threshold) {
 

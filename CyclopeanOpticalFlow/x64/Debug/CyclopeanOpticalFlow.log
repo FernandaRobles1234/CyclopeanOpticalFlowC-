@@ -1,4 +1,7 @@
 ﻿  cyclopeanOpticalFlow.cpp
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(299,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(361,21): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(300,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(359,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(418,21): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  tools.cpp
+  Generating Code...
   CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.exe
