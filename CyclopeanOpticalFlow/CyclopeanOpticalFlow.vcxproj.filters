@@ -18,42 +18,39 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="image_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cyclopean_optical_flow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="test_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imageTools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="display_functions.cpp">
+    <ClCompile Include="cyclopeanOpticalFlow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="displayResults.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exportResults.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cyclopean_optical_flow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="test_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imageTools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="display_functions.h">
+    <ClInclude Include="cyclopeanOpticalFlow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="displayResults.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,5 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="exportResults.h">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "pyramid.h"
 #include <boost/math/interpolators/cardinal_cubic_b_spline.hpp>
-#include "image_functions.h"
+#include "imageTools.h"
 #include <cmath>
 
 
@@ -32,20 +32,16 @@ std::vector<double> gaussian_kernel(double a) {
 	return result;
 }
 
-//Gets out of range with odd numbers
 void mean_partition(const std::vector<double> &line, std::vector<double>& solution_line) {
-    if (line.size()%2 == 0) {
-        std::cout << "odd size";
-    }
 
-    //temporary fix for odd size, it´s still missing to take into count the last number
+    //TODO: fix for odd size, it´s still missing to take into count the last number with line.size()-1
     for (auto i = 0; i < line.size()-1; i += 2) {
         solution_line.push_back((line[i] + line[i + 1]) * 0.5);
 
     }
 }
 
-std::vector<double> next_pyramidal_level(std::vector<double> &line) {
+std::vector<double> nextPyramidalLevel(std::vector<double> &line) {
    
     std::vector<double> line_pad(line);
     pad_vector(line_pad, 2, 2);
@@ -64,22 +60,28 @@ std::vector<double> next_pyramidal_level(std::vector<double> &line) {
     return line_mean_partition;
 }
 
-std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> pyr_func_gen(std::vector<double> line, int max_level) {
-    std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f;
-    std::vector<double> next_level_line;
-    boost::math::interpolators::cardinal_cubic_b_spline<double> next_level_f;
+//TODO: Make it so we can slice the data
+boost::math::interpolators::cardinal_cubic_b_spline<double> generateFunction(const std::vector<double>& line, int size, double start, double step) {
 
-    next_level_line = line;
+    boost::math::interpolators::cardinal_cubic_b_spline<double> spline(line.data(), size, start, step);
 
-    for (int i = 0; i < max_level; i++) {
-        next_level_f = function_generation(next_level_line, next_level_line.size(), 0, std::pow(2,i));
+    return spline;
+}
 
-        std::cout << next_level_line.size() << std::endl;
-        list_f.push_back(next_level_f);
+std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> generatePyramidFunctions(const std::vector<double>& data, int maxLevel) {
+    std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> listFunctions;
+    boost::math::interpolators::cardinal_cubic_b_spline<double> nextLevelFunction;
+    std::vector<double> nextLevelData;
 
-        next_level_line = next_pyramidal_level(next_level_line);
+    nextLevelData = data;
+
+    for (int i = 0; i < maxLevel+1; i++) {
+        nextLevelFunction = generateFunction(nextLevelData, nextLevelData.size(), 0, std::pow(2, i));
+        listFunctions.push_back(nextLevelFunction);
+
+        nextLevelData = nextPyramidalLevel(nextLevelData);
     }
 
-    return list_f;
+    return listFunctions;
 }
 

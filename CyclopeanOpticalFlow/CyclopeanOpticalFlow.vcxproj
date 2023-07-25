@@ -19,20 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="display_functions.cpp" />
+    <ClCompile Include="cyclopeanOpticalFlow.cpp" />
+    <ClCompile Include="displayResults.cpp" />
+    <ClCompile Include="exportResults.cpp" />
+    <ClCompile Include="imageTools.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="image_functions.cpp" />
-    <ClCompile Include="cyclopean_optical_flow.cpp" />
     <ClCompile Include="pyramid.cpp" />
-    <ClCompile Include="test_functions.cpp" />
     <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cyclopean_optical_flow.h" />
-    <ClInclude Include="display_functions.h" />
-    <ClInclude Include="image_functions.h" />
+    <ClInclude Include="cyclopeanOpticalFlow.h" />
+    <ClInclude Include="displayResults.h" />
+    <ClInclude Include="imageTools.h" />
     <ClInclude Include="pyramid.h" />
-    <ClInclude Include="test_functions.h" />
     <ClInclude Include="tools.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +39,7 @@
     <Image Include="images\im2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="exportResults.h" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
