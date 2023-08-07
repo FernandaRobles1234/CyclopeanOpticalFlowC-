@@ -9,55 +9,6 @@
 #include "cyclopeanOpticalFlow.h"
 #include "tools.h"
 
-// Define a constant seed value for the random number generator
-const unsigned int FIXED_SEED = 123; // You can change this value to get different random sequences
-
-#define TOLERANCE 0.0001
-
-//----------------------------------------------------Local Functions----------------------------------------------------
-double mean(double data[], int n) {
-	double sum = 0;
-	for (int i = 0; i < n; i++) {
-		sum += data[i];
-	}
-	return sum / n;
-}
-
-double variance(double data[], int n) {
-	double meanValue = mean(data, n);
-	double temp = 0;
-	for (int i = 0; i < n; i++) {
-		temp += (data[i] - meanValue) * (data[i] - meanValue);
-	}
-	return temp / (n - 1);
-}
-
-double covariance(double data1[], double data2[], int n) {
-	double mean1 = mean(data1, n);
-	double mean2 = mean(data2, n);
-	double temp = 0;
-	for (int i = 0; i < n; i++) {
-		temp += (data1[i] - mean1) * (data2[i] - mean2);
-	}
-	return temp / (n - 1);
-}
-
-double pearson_correlation(double data1[], double data2[], int n) {
-	return covariance(data1, data2, n) / (sqrt(variance(data1, n)) * sqrt(variance(data2, n)));
-}
-
-double L2_norm(const std::vector<double>& v) {
-	double sum = 0;
-	for (double x : v) {
-		sum += x * x;
-	}
-	return sqrt(sum);
-}
-
-static bool isEqualD(double x, double y)
-{
-	return fabs(x - y) < TOLERANCE;
-}
 
 //Check values of new_v0
 //TODO: Makea predefined seed for testing purposes
@@ -101,7 +52,7 @@ std::vector<std::vector<double>> new_values(const std::vector<std::vector<double
 
 				distance = (x + y);
 
-			} while (!isEqualD(v, distance));
+			} while (!isEqual(v, distance));
 
 			list_new_v0.push_back({ x,y });
 		}
@@ -243,7 +194,7 @@ std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::
 
 	//We calculate the pearson coefficient
 	double p_correlation;
-	p_correlation = pearson_correlation(&y1_set[0], &y2_set[0], (int)y1_set.size());
+	p_correlation = pearsonCorrelation(&y1_set[0], &y2_set[0], (int)y1_set.size());
 
 	//Not good correlation score
 	if (p_correlation < c_criteria) {
@@ -266,9 +217,10 @@ std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::
 	sign_int = (int)sign;
 	dv2 = (c - f2(p2)) / (d2 + sign_int * std::abs(fric2));
 
+	std::vector<double> dv = { dv1, dv2 };
 
 	// True if: the norm of the gradient is has found convergence
-	double norm = L2_norm({ dv1, dv2 });
+	double norm = L2Norm(dv);
 
 	if (norm < 0.01) {
 		v = { v1 + dv1, v2 + dv2, e, 5};

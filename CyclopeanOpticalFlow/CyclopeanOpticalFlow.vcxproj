@@ -23,9 +23,6 @@
     <ClCompile Include="displayResults.cpp" />
     <ClCompile Include="exportResults.cpp" />
     <ClCompile Include="imageTools.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="pyramid.cpp" />
-    <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cyclopeanOpticalFlow.h" />
@@ -33,10 +30,6 @@
     <ClInclude Include="imageTools.h" />
     <ClInclude Include="pyramid.h" />
     <ClInclude Include="tools.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="images\im1.png" />
-    <Image Include="images\im2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="exportResults.h" />
@@ -64,7 +57,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
