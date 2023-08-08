@@ -82,27 +82,26 @@ int displayFlowLine(std::vector<std::vector<double>>& v, boost::math::interpolat
 	return 0;
 }
 
-int display_function(boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, double start, double end, double step) {
+void display_function(boost::math::interpolators::cardinal_cubic_b_spline<float> f1, boost::math::interpolators::cardinal_cubic_b_spline<float> f2, float start, float end, float step) {
 	if (step == 0) {
 		std::cout << "steps==0" << std::endl;
 		std::cin.get();
-		return -1;
 	}
 
-	std::vector<double> x(end * (1 / step) - start * (1 / step));
-	double n = start;
+	std::vector<float> x(end * (1 / step) - start * (1 / step));
+	float n = start;
 
 	for (int i = 0; i < x.size(); i++) {
 		x[i] = n;
 		n = n + step;
 	}
 
-	std::vector<double> y1(x.size());
+	std::vector<float> y1(x.size());
 	for (int i = 0; i < y1.size(); i++) {
 		y1[i] = f1(x[i]);
 	}
 
-	std::vector<double> y2(x.size());
+	std::vector<float> y2(x.size());
 	for (int i = 0; i < y2.size(); i++) {
 		y2[i] = f2(x[i]);
 	}

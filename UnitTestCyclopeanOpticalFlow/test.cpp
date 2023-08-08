@@ -3,6 +3,7 @@
 
 #include "../CyclopeanOpticalFlow/tools.h"
 #include "../CyclopeanOpticalFlow/pyramid.h"
+#include "../CyclopeanOpticalFlow/displayResults.h"
 
 //TODO: Do negative numbers Test
 TEST(tools, uniformDistribution2DTest1) {
@@ -37,7 +38,7 @@ TEST(tools, pearsonCorrelationTest1) {
 	std::vector<float> x = { 1, 2, 3, 4, 5 };
 	std::vector<float> y = { 2, 4, 6, 8, 10 };
 
-	r = pearsonCorrelation(&x[0], &y[0], x.size());
+	r = pearsonCorrelation(&x[0], &y[0], (int)x.size());
 
 	EXPECT_TRUE(isEqual((float)1.0, r));
 }
@@ -48,7 +49,7 @@ TEST(tools, pearsonCorrelationTest2) {
 	std::vector<float> x = { 1, 2, 3, 4, 5 };
 	std::vector<float> y = { 3, 5, 6, 7, 9 };
 
-	r = pearsonCorrelation(&x[0], &y[0], x.size());
+	r = pearsonCorrelation(&x[0], &y[0], (int)x.size());
 
 	EXPECT_TRUE((float)0.0 < r);
 }
@@ -67,7 +68,7 @@ TEST(pyramid, padVectorTest1) {
 	std::vector<float> v = { 1, 2, 3, 4, 5 };
 	int padStart = 1;
 	int padEnd = 1;
-	int startSize = v.size() + padStart + padEnd;
+	int startSize = (int)v.size() + padStart + padEnd;
 
 	padVector(v, padStart, padEnd);
 
@@ -75,8 +76,17 @@ TEST(pyramid, padVectorTest1) {
 	EXPECT_TRUE(isEqual((int)v.size(), startSize));
 }
 
-int main(int argc, char** argv) {
-	testing::InitGoogleTest(&argc, argv);
-	return RUN_ALL_TESTS();
+TEST(pyramid, generatePyramidFunctionsTest1) {
+	std::vector<float> v = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1., 
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	//TODO: Check if they are at least 5 points for the interpolation
+	std::vector<fun<float>> vf = generatePyramidFunctions(v, 1);
+
+
+	display_function(vf[0], vf[1], 0, (int)v.size());
+
+
+	EXPECT_TRUE(true);
 }
 
