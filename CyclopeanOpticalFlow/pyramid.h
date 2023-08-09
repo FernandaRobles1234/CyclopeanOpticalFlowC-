@@ -12,14 +12,21 @@ std::vector<fun<T>> generatePyramidFunctions(const std::vector<T>& data, int max
     std::vector<fun<T>> listFunctions;
     fun<T> nextLevelFunction;
     std::vector<T> nextLevelData;
+    std::vector<T> nextLevelCoord;
+
+    for (int value = 0; value < data.size(); value += 1) {
+        nextLevelCoord.push_back(value);
+    }
 
     nextLevelData = data;
 
-    for (int i = 0; i < maxLevel + 1; i++) {
-        nextLevelFunction = generateFunction(nextLevelData, (int)nextLevelData.size(), 0.0f, (float)std::pow(2, i));
+    for (int i = 0; i <= maxLevel; i++) {
+        //(T)std::pow(2, i)
+        nextLevelFunction = generateFunction(nextLevelData, (int)nextLevelData.size(), (T)0.0, (T)1.0);
         listFunctions.push_back(nextLevelFunction);
 
         nextLevelData = nextPyramidalLevel(nextLevelData);
+        //nextLevelCoord= pyrNextCoord(nextLevelCoord);
     }
 
     return listFunctions;
@@ -51,7 +58,7 @@ std::vector<T> nextPyramidalLevel(std::vector<T>& line) {
     line_mean_partition.reserve(line_mean_partition.size() + 1);
     meanPartition(line_convolution, line_mean_partition);
 
-    return line_mean_partition;
+    return line_convolution;
 }
 
 template<typename T>

@@ -5,4 +5,11 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
               _Ty=float
           ]
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(87,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(106,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\pyramid.h(18,34): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(84): message : see reference to function template instantiation 'std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>> generatePyramidFunctions<float>(const std::vector<float,std::allocator<float>> &,int)' being compiled
   UnitTestCyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\UnitTestCyclopeanOpticalFlow.exe

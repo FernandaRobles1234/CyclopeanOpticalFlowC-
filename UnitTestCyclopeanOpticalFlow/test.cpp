@@ -90,3 +90,21 @@ TEST(pyramid, generatePyramidFunctionsTest1) {
 	EXPECT_TRUE(true);
 }
 
+TEST(pyramid, generatePyramidFunctionsTest2) {
+	std::vector<float> v = { 43, 102, 90, 88, 65, 88, 60, 64, 63, 120, 55, 78, 89, 85, 53, 34, 68,
+   68, 46, 101, 39, 130, 107, 81, 51, 28, 73, 52, 60, 73, 28, 33, 159,
+   63, 56, 98, 66, 43, 28, 30, 28, 29, 28, 39, 122, 74, 78, 79, 92,
+  92, 78, 61, 53, 48, 43, 223, 172, 204, 83, 132, 96, 52, 41, 37, 110,
+   166, 85, 45, 50, 44, 112, 47, 43, 34, 53, 50, 48, 93, 86, 104, 78,
+  82, 45, 43, 33, 33, 37, 36, 31, 34, 152, 252, 34, 34, 96, 104, 255,
+  224, 46, 34, 34, 37, 255, 255, 240, 81 };
+
+	//TODO: Check if they are at least 5 points for the interpolation
+	std::vector<fun<float>> vf = generatePyramidFunctions(v, 1);
+
+
+	display_function(vf[0], vf[1], 0, (int)v.size());
+
+
+	EXPECT_TRUE(true);
+}

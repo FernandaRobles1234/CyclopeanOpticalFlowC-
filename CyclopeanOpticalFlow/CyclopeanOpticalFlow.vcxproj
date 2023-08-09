@@ -28,6 +28,7 @@
   <ItemGroup>
     <ClInclude Include="cyclopeanOpticalFlow.h" />
     <ClInclude Include="displayResults.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="imageTools.h" />
     <ClInclude Include="pyramid.h" />
     <ClInclude Include="tools.h" />
