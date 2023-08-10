@@ -8,7 +8,6 @@
 template<typename T>
 using Matrix2D = std::vector<std::vector<T>>;
 
-// generate a vector of number pairs that sum up between v1 and v2
 template<typename T>
 Matrix2D<T> uniformDistribution2D(int size, T v1, T v2, bool testingMode) {
 

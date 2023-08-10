@@ -23,13 +23,11 @@
     <ClCompile Include="cyclopeanOpticalFlow.cpp" />
     <ClCompile Include="displayResults.cpp" />
     <ClCompile Include="exportResults.cpp" />
-    <ClCompile Include="imageTools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cyclopeanOpticalFlow.h" />
     <ClInclude Include="displayResults.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="imageTools.h" />
     <ClInclude Include="pyramid.h" />
     <ClInclude Include="tools.h" />
   </ItemGroup>

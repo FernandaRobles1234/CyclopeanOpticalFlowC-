@@ -167,9 +167,9 @@ std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::
 	double c_criteria = 0.3;
 
 	//Create the x vector for peason correlation coefficient
-	int c_size = 1;
-	double step = 0.1;
-	int inverse_step = 10; // 1/0.2
+	int c_size = 3;
+	double step = 1;
+	int inverse_step = 1; // 1/0.2
 
 	assert(step == (1.0/inverse_step)); 
 

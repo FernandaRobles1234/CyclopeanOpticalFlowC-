@@ -8,15 +8,11 @@ template<typename T>
 using fun = boost::math::interpolators::cardinal_cubic_b_spline<T>;
 
 template<typename T>
-std::vector<fun<T>> generatePyramidFunctions(const std::vector<T>& data, int maxLevel) {
+std::vector<fun<T>> generatePyramidRepresentation(const std::vector<T>& data, int maxLevel) {
     std::vector<fun<T>> listFunctions;
     fun<T> nextLevelFunction;
     std::vector<T> nextLevelData;
     std::vector<T> nextLevelCoord;
-
-    for (int value = 0; value < data.size(); value += 1) {
-        nextLevelCoord.push_back(value);
-    }
 
     nextLevelData = data;
 
@@ -26,7 +22,6 @@ std::vector<fun<T>> generatePyramidFunctions(const std::vector<T>& data, int max
         listFunctions.push_back(nextLevelFunction);
 
         nextLevelData = nextPyramidalLevel(nextLevelData);
-        //nextLevelCoord= pyrNextCoord(nextLevelCoord);
     }
 
     return listFunctions;
@@ -58,42 +53,8 @@ std::vector<T> nextPyramidalLevel(std::vector<T>& line) {
     line_mean_partition.reserve(line_mean_partition.size() + 1);
     meanPartition(line_convolution, line_mean_partition);
 
+    //TODO: No subsampling of 2
     return line_convolution;
-}
-
-template<typename T>
-std::vector<T> pyrNextCoord(const std::vector<T>& coords) {
-    std::vector<T> result;
-
-    T step = coords[1] - coords[0];
-    T first = coords[0] - 2 * step;
-    T last = coords.back() + 2 * step;
-
-    for (T x = first; x <= last; x += step) {
-        result.push_back(x);
-    }
-
-    std::vector<T> averagedResult;
-    for (size_t i = 0; i < result.size() - 1; ++i) {
-        averagedResult.push_back((result[i] + result[i + 1]) / 2.0);
-    }
-
-    return averagedResult;
-}
-
-template<typename T>
-std::vector<T> pyrCoordFirstLast(int level, int lineSizeLevel0) {
-    std::vector<T> coords(lineSizeLevel0);
-    for (int i = 0; i < lineSizeLevel0; ++i) {
-        coords[i] = static_cast<T>(i + 1);
-    }
-
-    for (int i = 0; i < level; ++i) {
-        coords = pyrNextCoord(coords);
-    }
-
-    std::vector<T> result = { coords.front(), coords.back() };
-    return result;
 }
 
 //Todo: Check types here
