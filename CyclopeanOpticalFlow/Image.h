@@ -9,7 +9,6 @@
 //TODO: Maybe do this Image object as a stereo pair
 namespace cof {
 	template <class T>
-
 	class Image {
 		//TODO: How much should we reserve?
 		//TODO: Assert data.len > 5 
@@ -25,7 +24,7 @@ namespace cof {
 		Image(const std::vector<std::vector<T>>& imData) : imData(imData), rows(imData.size()), columns(imData[0].size()) {}
 
 		//TODO: Make it so we can analize in between the continuous function
-		std::vector<fun<T>> generatePyramidFunction(int row, int maxLevel) const;
+		std::vector<fun<T>> generatePyramidFunctions(int row, int maxLevel) const;
 
 		std::vector<std::vector<fun<T>>> generatePyramidFunctionMatrix(int maxLevel) const;
 
@@ -50,9 +49,9 @@ namespace cof {
 	};
 
 	template <class T>
-	inline std::vector<fun<T>> Image<T>::generatePyramidFunction(int row, int maxLevel) const{
+	inline std::vector<fun<T>> Image<T>::generatePyramidFunctions(int row, int maxLevel) const{
 		//TODO: Assert that row is within the limit
-		return generatePyramidRepresentation(imData[row], maxLevel);
+		return generatePyramidFunctionLevels(imData[row], maxLevel);
 	}
 
 	template <class T>
@@ -60,7 +59,7 @@ namespace cof {
 		std::vector<std::vector<fun<T>>> solution;
 
 		for (size_t row = 0; row < rows; row++) {
-			solution.push_back(this->generatePyramidFunction(row, maxLevel));
+			solution.push_back(this->generatePyramidFunctions(row, maxLevel));
 		}
 
 		return solution;

@@ -8,7 +8,7 @@ template<typename T>
 using fun = boost::math::interpolators::cardinal_cubic_b_spline<T>;
 
 template<typename T>
-std::vector<fun<T>> generatePyramidRepresentation(const std::vector<T>& data, int maxLevel) {
+std::vector<fun<T>> generatePyramidFunctionLevels(const std::vector<T>& data, int maxLevel) {
     std::vector<fun<T>> listFunctions;
     fun<T> nextLevelFunction;
     std::vector<T> nextLevelData;
