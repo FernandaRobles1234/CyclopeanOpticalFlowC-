@@ -3,13 +3,14 @@
 #include <random>
 
 #define TOLERANCE 0.00001
+#define TOLERANCEL 0.5
 #define FIXED_SEED 123
 
 template<typename T>
 using Matrix2D = std::vector<std::vector<T>>;
 
 template<typename T>
-Matrix2D<T> uniformDistribution2D(int size, T v1, T v2, bool testingMode) {
+Matrix2D<T> uniformDistribution2D(int size, T v1, T v2, bool testingMode= false) {
 
     Matrix2D<T> list_v0;
     list_v0.reserve(size);
@@ -50,6 +51,12 @@ Matrix2D<T> uniformDistribution2D(int size, T v1, T v2, bool testingMode) {
 }
 
 template<typename T>
+ static bool isEqualL(T x, T y)
+ {
+     return fabs(x - y) < TOLERANCEL;
+ }
+
+ template<typename T>
  static bool isEqual(T x, T y)
  {
      return fabs(x - y) < TOLERANCE;

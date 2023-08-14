@@ -9,60 +9,59 @@
 #include "cyclopeanOpticalFlow.h"
 #include "tools.h"
 
-
-//Check values of new_v0
-//TODO: Makea predefined seed for testing purposes
-std::vector<std::vector<double>> new_values(const std::vector<std::vector<double>>& list_v0, int size, const std::vector<double>& v0, int e_threshold) {
-
-	// Create a random number generator
-	//std::random_device rd;
-	std::mt19937 gen(FIXED_SEED);
-
-	std::vector<double> new_v0;
-	std::vector<std::vector<double>> list_new_v0;
-	list_new_v0.reserve(size);
-
-	double v1 = v0[0];
-	double v2 = v0[1];
-	double e = v0[2];
-	double f = v0[3];
-
-	double v = v1 + v2;
-
-	// Create a uniform real distribution object
-	std::uniform_real_distribution<double> dist(0, v);
-
-	//When threshold is met, no further iteration is done
-	if (e > e_threshold) {
-		new_v0 = { 0, 0 };
-		list_new_v0.push_back(new_v0);
-		return list_new_v0;
-	}
-
-	if (v != 0 ) {
-		double x, y, distance;
-
-		
-		for (int i = 0; i < size; i++) {
-
-			do {
-				// Generate a random number between 0 and v
-				x = dist(gen);
-				y = dist(gen);
-
-				distance = (x + y);
-
-			} while (!isEqual(v, distance));
-
-			list_new_v0.push_back({ x,y });
-		}
-
-		return list_new_v0;
-	}
-	else {
-		return list_v0;
-	}
-}
+////Check values of new_v0
+////TODO: Makea predefined seed for testing purposes
+//std::vector<std::vector<double>> new_values(const std::vector<std::vector<double>>& list_v0, int size, const std::vector<double>& v0, int e_threshold) {
+//
+//	// Create a random number generator
+//	//std::random_device rd;
+//	std::mt19937 gen(FIXED_SEED);
+//
+//	std::vector<double> new_v0;
+//	std::vector<std::vector<double>> list_new_v0;
+//	list_new_v0.reserve(size);
+//
+//	double v1 = v0[0];
+//	double v2 = v0[1];
+//	double e = v0[2];
+//	double f = v0[3];
+//
+//	double v = v1 + v2;
+//
+//	// Create a uniform real distribution object
+//	std::uniform_real_distribution<double> dist(0, v);
+//
+//	//When threshold is met, no further iteration is done
+//	if (e > e_threshold) {
+//		new_v0 = { 0, 0 };
+//		list_new_v0.push_back(new_v0);
+//		return list_new_v0;
+//	}
+//
+//	if (v != 0 ) {
+//		double x, y, distance;
+//
+//		
+//		for (int i = 0; i < size; i++) {
+//
+//			do {
+//				// Generate a random number between 0 and v
+//				x = dist(gen);
+//				y = dist(gen);
+//
+//				distance = (x + y);
+//
+//			} while (!isEqual(v, distance));
+//
+//			list_new_v0.push_back({ x,y });
+//		}
+//
+//		return list_new_v0;
+//	}
+//	else {
+//		return list_v0;
+//	}
+//}
 
 //TODO: Make it so the criteria function can be personalized
 std::vector<double> pick_new_values(const std::vector<std::vector<double>>& list_v0, int e_threshold) {
