@@ -34,7 +34,6 @@ TEST(tools, uniformDistribution2DTest1) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(tools, pearsonCorrelationTest1) {
 	float r = 0.0;
 
@@ -45,7 +44,6 @@ TEST(tools, pearsonCorrelationTest1) {
 
 	EXPECT_TRUE(isEqual((float)1.0, r));
 }
-
 TEST(tools, pearsonCorrelationTest2) {
 	float r = 0.0;
 
@@ -56,7 +54,6 @@ TEST(tools, pearsonCorrelationTest2) {
 
 	EXPECT_TRUE((float)0.0 < r);
 }
-
 TEST(tools, L2NormTest1) {
 	std::vector<float> v = { 1, 2, 3, 4, 5 };
 	float norm = 0;
@@ -66,7 +63,6 @@ TEST(tools, L2NormTest1) {
 
 	EXPECT_TRUE(isEqual((float)7.416198487 , norm));
 }
-
 TEST(pyramid, padVectorTest1) {
 	std::vector<float> v = { 1, 2, 3, 4, 5 };
 	int padStart = 1;
@@ -78,7 +74,6 @@ TEST(pyramid, padVectorTest1) {
 
 	EXPECT_TRUE(isEqual((int)v.size(), startSize));
 }
-
 TEST(pyramid, generatePyramidRepresentationTest1) {
 	std::vector<float> v = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1., 
 		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
@@ -92,7 +87,6 @@ TEST(pyramid, generatePyramidRepresentationTest1) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(pyramid, generatePyramidRepresentationTest2) {
 	std::vector<float> v = { 43, 102, 90, 88, 65, 88, 60, 64, 63, 120, 55, 78, 89, 85, 53, 34, 68,
    68, 46, 101, 39, 130, 107, 81, 51, 28, 73, 52, 60, 73, 28, 33, 159,
@@ -111,7 +105,6 @@ TEST(pyramid, generatePyramidRepresentationTest2) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(Image, generatePyramidFunctionTest1) {
 	std::vector<std::vector<float>> v = { { 43, 102, 90, 88, 65, 88, 60, 64, 63, 120, 55, 78, 89, 85, 53, 34, 68,
    68, 46, 101, 39, 130, 107, 81, 51, 28, 73, 52, 60, 73, 28, 33, 159,
@@ -128,7 +121,6 @@ TEST(Image, generatePyramidFunctionTest1) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(Image, generatePyramidFunctionMatrixTest1) {
 	std::vector<std::vector<float>> v1 = { { 43, 102, 90, 88, 65, 88, 60, 64, 63, 120, 55, 78, 89, 85, 53, 34, 68,
 		68, 46, 101, 39, 130, 107, 81, 51, 28, 73, 52, 60, 73, 28, 33, 159,
@@ -157,7 +149,6 @@ TEST(Image, generatePyramidFunctionMatrixTest1) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(cyclopeanOpticalFlow, newValuesTest1) {
 	int size = 10;
 
@@ -191,7 +182,6 @@ TEST(cyclopeanOpticalFlow, newValuesTest1) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, newValuesTest2) {
 	int size = 10;
 
@@ -224,7 +214,6 @@ TEST(cyclopeanOpticalFlow, newValuesTest2) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, newValuesTest3) {
 	float minNumber = 2.0;
 	float maxNumber = 5.0;
@@ -328,4 +317,53 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest4) {
 	bool criteria = isEqualL(v0[0], 5.0f) && isEqualL(v0[1], 0.0f);
 
 	EXPECT_TRUE(criteria);
+}
+
+TEST(cyclopeanOpticalFlow, upgrade_1dTest1) {
+	std::vector<float> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+	std::vector<float> v2 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	std::vector<fun<float>> f1 = generatePyramidFunctionLevels(v1, 0);
+	std::vector<fun<float>> f2 = generatePyramidFunctionLevels(v2, 0);
+
+	//display_function(f1[0], f2[0], 0, (int)v1.size());
+
+	std::vector<float> v0 = {0.0, 0.0, 0.0, 0.0};
+	float p0 = 10;
+	int e_threshold = 0;
+	float threshold = 0.001;
+
+	v0= upgrade_1d(v0, p0, f1[0], f2[0], e_threshold, threshold);
+	
+	Matrix2D<float> v0List = { v0 };
+
+	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+
+	EXPECT_TRUE(true);
+}
+
+TEST(cyclopeanOpticalFlow, upgrade_1dTest2) {
+	std::vector<float> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+	std::vector<float> v2 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	std::vector<fun<float>> f1 = generatePyramidFunctionLevels(v1, 0);
+	std::vector<fun<float>> f2 = generatePyramidFunctionLevels(v2, 0);
+
+
+	std::vector<float> v0 = { 0.0, 0.0, 0.0, 0.0 };
+	float p0 = 15;
+	int e_threshold = 0;
+	float threshold = 0.001;
+
+	v0 = upgrade_1d(v0, p0, f1[0], f2[0], e_threshold, threshold);
+
+	Matrix2D<float> v0List = { v0 };
+
+	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+
+	EXPECT_TRUE(true);
 }

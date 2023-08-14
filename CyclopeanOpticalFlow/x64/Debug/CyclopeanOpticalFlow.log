@@ -1,1 +1,14 @@
-﻿  CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.lib
+﻿  cyclopeanOpticalFlow.cpp
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(249,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(310,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(371,21): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(88,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(274): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pickNewValues<double,pyr_flow_1d_v0::<lambda_1>>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,Condition)' being compiled
+          with
+          [
+              Condition=pyr_flow_1d_v0::<lambda_1>
+          ]
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(88,50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(91,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(91,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.lib
