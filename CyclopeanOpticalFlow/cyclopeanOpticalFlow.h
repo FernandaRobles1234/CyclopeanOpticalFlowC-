@@ -1,9 +1,8 @@
 #pragma once
 #include <iostream>
 #include <vector>
-
 #include "tools.h"
-//-----------------------------------------------------Main Functions----------------------------------------------------------
+
 
 template<class T>
 Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T>& v0, int e_threshold, bool testingMode= false) {
@@ -31,7 +30,7 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 	T v = v1 + v2;
 
 	// Create a uniform real distribution object
-	std::uniform_real_distribution<double> dist(0, v);
+	std::uniform_real_distribution<T> dist(0, v);
 
 	//When threshold is met, no further iteration is done
 	if (e > e_threshold) {
@@ -67,8 +66,8 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 	}
 }
 
-
 //TODO: Fake converge case
+//TODO: pick the value with less e?
 template<class T, class Condition>
 std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Condition condition) {
 	Matrix2D<T> converged_values;
@@ -85,7 +84,7 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 		T e = v0[2];
 		T f = v0[3];
 
-		if ((int)f == 5 && e <= e_threshold && condition(v1, v2)) {
+		if ((T)f == 5 && e <= e_threshold && condition(v1, v2)) {
 			converged_values.push_back(v0);
 		}
 		else if (e <= e_threshold && condition(v1, v2)) {
@@ -96,7 +95,7 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 		}
 	}
 
-
+	
 	if (!converged_values.empty()) {
 		return converged_values[0];
 	}
@@ -107,6 +106,10 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 		return { 0, 0, random_values[0][2], random_values[0][3] };
 	}
 }
+
+
+
+
 
 std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold);
 

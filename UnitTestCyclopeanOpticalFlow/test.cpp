@@ -280,13 +280,13 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
 	EXPECT_TRUE(criteria);
 }
 
-TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
+TEST(cyclopeanOpticalFlow, pickNewValuesTest2) {
 	std::vector<float> v0;
-	Matrix2D<float> listV0 = { { 3.0, 2.0, 2.0, 5.0 },
-		{ 2.0, 3.0, 2.0, 5.0 },
-		{ 3.0, 3.0, 1.0, 5.0 },
-		{ 7.0, 3.0, 1.0, 5.0 },
-		{ 0.0, 1.0, 5.0, 5.0 } };
+	Matrix2D<float> listV0 = { { 3.0, 3.0, 0.0, 0.0 },
+		{ -2.0, -3.0, 0.0, 0.0 },
+		{ -3.0, 5.0, 0.0, 0.0 },
+		{ 7.0, 0.0, 0.0, 0.0 },
+		{ 0.000001, 0.000002, 0.0, 0.0 } };
 
 	v0 = pickNewValues(listV0, 0, [](float v1, float v2) {
 		return (v1 * v2 > 0 && v1 + v2 >= 0 && v1 + v2 <= 5);
@@ -297,19 +297,35 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
 	EXPECT_TRUE(criteria);
 }
 
-TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
+TEST(cyclopeanOpticalFlow, pickNewValuesTest3) {
 	std::vector<float> v0;
-	Matrix2D<float> listV0 = { { 3.0, 2.0, 0.0, 5.0 },
-		{ 2.0, 3.0, 2.0, 0.0 },
-		{ 3.0, 3.0, 1.0, 0.0 },
-		{ 7.0, 3.0, 1.0, 0.0 },
-		{ 0.0, 1.0, 5.0, 0.0 } };
+	Matrix2D<float> listV0 = { {2.0, 2.0, 0.0, 0.0}, 
+		{2.5, 2.5, 0.0, 5.0},
+		{5.0, 0.0, 0.0, 5.0} };
 
 	v0 = pickNewValues(listV0, 0, [](float v1, float v2) {
-		return (v1 * v2 > 0 && v1 + v2 >= 0 && v1 + v2 <= 5);
+		return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0);
 		});
 
-	bool criteria = isEqualL(v0[0], 0.0f) && isEqualL(v0[1], 0.0f);
+	bool criteria = isEqualL(v0[0], 2.5f) && isEqualL(v0[1], 2.5f);
+
+	EXPECT_TRUE(criteria);
+}
+
+TEST(cyclopeanOpticalFlow, pickNewValuesTest4) {
+	std::vector<float> v0;
+	Matrix2D<float> listV0 = { {2.0, 2.0, 0.0, 0.0},
+		{2.5, 2.5, 2.0, 5.0},
+		{5.0, 0.0, 1.0, 5.0},
+		{0.0, 5.0, 0.0, 5.0} };
+
+	int e_threshold = 1;
+
+	v0 = pickNewValues(listV0, e_threshold, [](float v1, float v2) {
+		return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0);
+		});
+
+	bool criteria = isEqualL(v0[0], 5.0f) && isEqualL(v0[1], 0.0f);
 
 	EXPECT_TRUE(criteria);
 }

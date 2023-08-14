@@ -9,6 +9,7 @@
 #include "cyclopeanOpticalFlow.h"
 #include "tools.h"
 
+//TODO: Erase these
 ////Check values of new_v0
 ////TODO: Makea predefined seed for testing purposes
 //std::vector<std::vector<double>> new_values(const std::vector<std::vector<double>>& list_v0, int size, const std::vector<double>& v0, int e_threshold) {
@@ -63,49 +64,48 @@
 //	}
 //}
 
-//TODO: Make it so the criteria function can be personalized
-std::vector<double> pick_new_values(const std::vector<std::vector<double>>& list_v0, int e_threshold) {
-	
+//std::vector<double> pick_new_values(const std::vector<std::vector<double>>& list_v0, int e_threshold) {
+//	
+//
+//	std::vector<std::vector<double>> converged_values;
+//	converged_values.reserve(list_v0.size());
+//	std::vector<std::vector<double>> ok_values;
+//	ok_values.reserve(list_v0.size());
+//	std::vector<std::vector<double>> random_values;
+//	random_values.reserve(list_v0.size());
+//
+//	for (std::vector<double> v0 : list_v0) {
+//
+//		double v1 = v0[0];
+//		double v2 = v0[1];
+//		double e = v0[2];
+//		double f = v0[3];
+//
+//		//TODO: Add personalized conditions
+//		if ((int)f == 5 && v1*v2 > 0 && v1+v2 >= 0 && v1 + v2 <= 3) {
+//			converged_values.push_back(v0);
+//		}
+//		else if(e <= e_threshold && v1 * v2 > 0 && v1 + v2 >= 0 && v1 + v2 <= 3) {
+//			ok_values.push_back(v0);
+//		}
+//		else{
+//			random_values.push_back(v0);
+//		}
+//	}
+//
+//
+//	if (!converged_values.empty()) {
+//		return converged_values[0];
+//	}
+//	else if (!ok_values.empty()) {
+//		return ok_values[0];
+//	}
+//	else {
+//		return {0, 0, random_values[0][2], random_values[0][3]};
+//	}
+//}
 
-	std::vector<std::vector<double>> converged_values;
-	converged_values.reserve(list_v0.size());
-	std::vector<std::vector<double>> ok_values;
-	ok_values.reserve(list_v0.size());
-	std::vector<std::vector<double>> random_values;
-	random_values.reserve(list_v0.size());
 
-	for (std::vector<double> v0 : list_v0) {
-
-		double v1 = v0[0];
-		double v2 = v0[1];
-		double e = v0[2];
-		double f = v0[3];
-
-		//TODO: Add personalized conditions
-		if ((int)f == 5 && v1*v2 > 0 && v1+v2 >= 0 && v1 + v2 <= 3) {
-			converged_values.push_back(v0);
-		}
-		else if(e <= e_threshold && v1 * v2 > 0 && v1 + v2 >= 0 && v1 + v2 <= 3) {
-			ok_values.push_back(v0);
-		}
-		else{
-			random_values.push_back(v0);
-		}
-	}
-
-
-	if (!converged_values.empty()) {
-		return converged_values[0];
-	}
-	else if (!ok_values.empty()) {
-		return ok_values[0];
-	}
-	else {
-		return {0, 0, random_values[0][2], random_values[0][3]};
-	}
-}
-
-//----------------------------------------------------Main Functions----------------------------------------------------
 
 std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold){
 
