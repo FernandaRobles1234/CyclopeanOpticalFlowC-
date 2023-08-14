@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\OpenCV.2.4.11\build\native\OpenCV.props" Condition="Exists('..\packages\OpenCV.2.4.11\build\native\OpenCV.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,27 +20,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="display_functions.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="image_functions.cpp" />
-    <ClCompile Include="cyclopean_optical_flow.cpp" />
-    <ClCompile Include="pyramid.cpp" />
-    <ClCompile Include="test_functions.cpp" />
-    <ClCompile Include="tools.cpp" />
+    <ClCompile Include="cyclopeanOpticalFlow.cpp" />
+    <ClCompile Include="displayResults.cpp" />
+    <ClCompile Include="exportResults.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cyclopean_optical_flow.h" />
-    <ClInclude Include="display_functions.h" />
-    <ClInclude Include="image_functions.h" />
+    <ClInclude Include="cyclopeanOpticalFlow.h" />
+    <ClInclude Include="displayResults.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="pyramid.h" />
-    <ClInclude Include="test_functions.h" />
     <ClInclude Include="tools.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\im1.png" />
-    <Image Include="images\im2.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="exportResults.h" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -64,7 +57,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -159,14 +152,19 @@
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\boost.1.81.0\build\boost.targets" Condition="Exists('..\packages\boost.1.81.0\build\boost.targets')" />
-    <Import Project="..\packages\matplotlib-cpp.1.1.0.91\build\native\matplotlib-cpp.targets" Condition="Exists('..\packages\matplotlib-cpp.1.1.0.91\build\native\matplotlib-cpp.targets')" />
+    <Import Project="..\packages\boost.1.82.0\build\boost.targets" Condition="Exists('..\packages\boost.1.82.0\build\boost.targets')" />
+    <Import Project="..\packages\matplotlib-cpp.1.1.0.92\build\native\matplotlib-cpp.targets" Condition="Exists('..\packages\matplotlib-cpp.1.1.0.92\build\native\matplotlib-cpp.targets')" />
+    <Import Project="..\packages\OpenCV.2.4.11\build\native\OpenCV.targets" Condition="Exists('..\packages\OpenCV.2.4.11\build\native\OpenCV.targets')" />
+    <Import Project="..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets" Condition="Exists('..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\boost.1.81.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.81.0\build\boost.targets'))" />
-    <Error Condition="!Exists('..\packages\matplotlib-cpp.1.1.0.91\build\native\matplotlib-cpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\matplotlib-cpp.1.1.0.91\build\native\matplotlib-cpp.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.82.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.82.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\matplotlib-cpp.1.1.0.92\build\native\matplotlib-cpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\matplotlib-cpp.1.1.0.92\build\native\matplotlib-cpp.targets'))" />
+    <Error Condition="!Exists('..\packages\OpenCV.2.4.11\build\native\OpenCV.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCV.2.4.11\build\native\OpenCV.props'))" />
+    <Error Condition="!Exists('..\packages\OpenCV.2.4.11\build\native\OpenCV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCV.2.4.11\build\native\OpenCV.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets'))" />
   </Target>
 </Project>

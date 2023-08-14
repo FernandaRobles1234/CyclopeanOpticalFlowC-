@@ -1,4 +1,1 @@
-﻿  pyramid.cpp
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\pyramid.cpp(11,47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\pyramid.cpp(75,101): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.exe
+﻿  CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.lib

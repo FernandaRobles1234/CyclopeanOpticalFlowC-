@@ -1,24 +1,25 @@
 #include <iostream>
-#include <opencv2/core/core.hpp>
 #include <typeinfo>
 #include <boost/math/interpolators/cardinal_cubic_b_spline.hpp>
-#include "image_functions.h"
-#include "cyclopean_optical_flow.h"
-#include "test_functions.h"
+#include <opencv2/core/core.hpp>
+
+#include "imageTools.h"
+#include "cyclopeanOpticalFlow.h"
 #include "tools.h"
 #include "pyramid.h"
-#include "display_functions.h"
+#include "displayResults.h"
+#include "exportResults.h"
 
-
+void estimateOpticalFlow(cv::Mat im1, cv::Mat im2);
 
 int main(int argc, char* argv[]) {
 
 	// Processing the images
 	int scale = atoi(argv[3]);
-	cv::Mat im1 = resize_image(cv::imread(argv[1], cv::IMREAD_GRAYSCALE), scale);
-	cv::Mat im2 = resize_image(cv::imread(argv[2], cv::IMREAD_GRAYSCALE), scale);
+	cv::Mat im1 = resizeImage(cv::imread(argv[1], cv::IMREAD_GRAYSCALE), scale);
+	cv::Mat im2 = resizeImage(cv::imread(argv[2], cv::IMREAD_GRAYSCALE), scale);
 
-	// Error Handling
+	// Error: Empty image
 	if (im1.empty() || im2.empty()) {
 		std::cout << "Image File "
 			<< "Not Found" << std::endl;
@@ -28,77 +29,50 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	if (false) {
-		int type = im1.type();
-		std::cout << type << std::endl;
-		int num_channels = im1.channels();
-		std::cout << num_channels << std::endl;
-	}
-
-	// image_data 
-	std::vector< std::vector<double>> im1_data;
-	im1_data = image_data(im1);
-
-	std::vector< std::vector<double>> im2_data;
-	im2_data = image_data(im2);
-
-	//-------------------------------------------Pyramid test---------------------------------------------------------
-	std::vector<double> row1_data= im1_data[10];
-	std::vector<double> row2_data= im2_data[10];
-
-	for (auto data : row1_data) {
-		std::cout << data << " ";
-	}
-	std::cout << std::endl;
-	std::cout << row1_data.size() << std::endl;
-
-	std::vector<double> im1_data_lvl1;
-	im1_data_lvl1 = next_pyramidal_level(row1_data);
-
-	std::vector<double> im2_data_lvl1;
-	im2_data_lvl1 = next_pyramidal_level(row2_data);
-
-	for (auto col : im1_data_lvl1) {
-		std::cout << col << " ";
-	}
-	std::cout << std::endl;
-	std::cout << im1_data_lvl1.size() << std::endl;
-
-	//display_vector(im2_data_lvl1, 0, row2_data.size(), 2, row2_data, 0, row2_data.size(), 1);
-
-	//function_generation
-	/*boost::math::interpolators::cardinal_cubic_b_spline<double> f1;
-	f1 = function_generation(row1_data, row1_data.size());
-	boost::math::interpolators::cardinal_cubic_b_spline<double> f2;
-	f2 = function_generation(row2_data, row2_data.size());
-
-	boost::math::interpolators::cardinal_cubic_b_spline<double> f1_lvl1;
-	f1_lvl1 = function_generation(im1_data_lvl1, im1_data_lvl1.size(),0, 2);
-	boost::math::interpolators::cardinal_cubic_b_spline<double> f2_lvl1;
-	f2_lvl1 = function_generation(im2_data_lvl1, im2_data_lvl1.size(), 0, 2);*/
-
-	std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1;
-	list_f1 = pyr_func_gen(row1_data, 3);
-
-	display_function(list_f1[0], list_f1[1], 0, row1_data.size());
-
-	display_function(list_f1[1], list_f1[2], 0, row1_data.size());
-
-	//-------------------------------------------Flow test------------------------------------------------------------
-
-	// function generation with test functions
-	//SinFunc f1(0);
-	//SinFunc f2(-0.5);
-
-	/*std::vector<std::vector<double>> v_final;
-	std::vector<std::vector<double>> list_v0;
-
-	list_v0 = uniform_distribution_2d(10, 0, 1);
-
-	v_final = line_test_v0(10, list_v0, f1_lvl1, f2_lvl1, 0, im1.cols, 0, 0.001);
-
-	line_display_flow(v_final, f1_lvl1, f2_lvl1, 0, im1.cols);*/
+	//Estimate Optical Flow
+	estimateOpticalFlow(im1, im2);
 
 	return 0;
 }
 
+void estimateOpticalFlow(cv::Mat im1, cv::Mat im2) {
+	// Get image data
+	std::vector< std::vector<double>> im1_data;
+	im1_data = obtainImageData(im1);
+
+	std::vector< std::vector<double>> im2_data;
+	im2_data = obtainImageData(im2);
+
+	std::vector<double> row1 = im1_data[10];
+	std::vector<double> row2 = im2_data[10];
+
+
+	//Generate Functions
+	int test_n = 0;
+	std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> f1_pyr;
+	f1_pyr = generatePyramidFunctions(row1, test_n);
+
+
+	std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> f2_pyr;
+	f2_pyr = generatePyramidFunctions(row2, test_n);
+
+	std::vector<std::vector<double>> list_v0;
+	std::vector<double> v;
+
+	list_v0 = uniformDistribution2d(10, 0, 2);
+
+	int test_point = 31;
+
+	v = cyclopeanOpticalFlowPoint(10, list_v0, f1_pyr, f2_pyr, test_point, 0, 0.01);
+
+	std::cout << v[0] << ", " << v[1] << ", " << v[3] << ", " << v[0] + v[1] << std::endl;
+
+	v = testPyramidalFlowPoint(list_v0, test_point, f1_pyr, f2_pyr, 0, 0.01);
+
+	std::cout << v[0] << ", " << v[1] << ", " << v[3] << ", " << v[0] + v[1] << std::endl;
+
+	std::vector<std::vector<double>> solution_v;
+	solution_v = cyclopeanOpticalFlowRow(10, list_v0, f1_pyr, f2_pyr, 0, row1.size(), 0, 0.01);
+	//matrixToTxt(solution_v, "row_test.txt");
+	displayFlowLine(solution_v, f1_pyr[test_n], f2_pyr[test_n], 0, row1.size());
+}

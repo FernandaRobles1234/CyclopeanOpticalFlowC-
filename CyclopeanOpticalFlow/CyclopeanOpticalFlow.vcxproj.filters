@@ -15,57 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="cyclopeanOpticalFlow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="image_functions.cpp">
+    <ClCompile Include="displayResults.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cyclopean_optical_flow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="test_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tools.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pyramid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="display_functions.cpp">
+    <ClCompile Include="exportResults.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cyclopean_optical_flow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="test_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="display_functions.h">
+    <ClInclude Include="cyclopeanOpticalFlow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="displayResults.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\im1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="images\im2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="exportResults.h">
+      <Filter>Header Files</Filter>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
 </Project>
