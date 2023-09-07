@@ -1,14 +1,32 @@
 ﻿  cyclopeanOpticalFlow.cpp
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(249,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(310,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(371,21): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(88,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(274): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pickNewValues<double,pyr_flow_1d_v0::<lambda_1>>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,Condition)' being compiled
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(89,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(333): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pickNewValues<double,testPyramidalFlowPoint::<lambda_1>>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,Condition)' being compiled
           with
           [
-              Condition=pyr_flow_1d_v0::<lambda_1>
+              Condition=testPyramidalFlowPoint::<lambda_1>
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(88,50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(91,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(91,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  CyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\CyclopeanOpticalFlow.lib
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(89,50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(92,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(92,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(256,11): warning C4244: 'initializing': conversion from 'unsigned __int64' to 'double', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.cpp(359): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pyr_flow_1d_v0<double,int>(Condition,const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,T,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,int,T,T)' being compiled
+          with
+          [
+              Condition=int,
+              T=double
+          ]
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,63): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,75): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(292,39): warning C4244: 'argument': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(296,2): error C2440: 'return': cannot convert from 'std::vector<float,std::allocator<float>>' to 'std::vector<double,std::allocator<double>>'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(296,2): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called

@@ -67,6 +67,7 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 	}
 }
 
+
 //TODO: Fake converge case
 //TODO: pick the value with less e?
 template<class T, class Condition>
@@ -107,6 +108,7 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 		return { 0, 0, random_values[0][2], random_values[0][3] };
 	}
 }
+
 
 template<class T>
 std::vector<T> upgrade_1d(const std::vector<T>& v0, T p0, fun<T> f1, fun<T> f2, int e_threshold, T threshold) {
@@ -233,9 +235,70 @@ std::vector<T> upgrade_1d(const std::vector<T>& v0, T p0, fun<T> f1, fun<T> f2, 
 }
 
 
-std::vector<double> upgrade_1d(const std::vector<double>& v0, double p0, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int e_threshold, double threshold);
+template<class T, class Condition>
+std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T p0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2, int e_threshold, T threshold, T iterations= 10) {
 
-std::vector<double> pyr_flow_1d_v0(int iterations, const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold = 0, double threshold = 0.01);
+	int nv_size = (int)list_v0.size();
+
+	std::vector<std::vector<T>> nV;
+	nV.reserve(nv_size);
+
+	Matrix2D<T> list_temporal_values;
+	list_temporal_values.reserve(nv_size);
+
+	std::vector<T> update_values{ 0,0,0,0 };
+
+	std::vector<T> temporal_values;
+	temporal_values.reserve(update_values.size());
+
+
+	//pyramidal loop
+	for (T j = list_f1.size() - 1; j >= 0.0 ; j--) {
+		//This will only give values that sum up to the magnitude of v Or if v0 = 0, list newv0 is created and fed to the function to try all it's contained values
+		nV = new_values(list_v0, nv_size, update_values, e_threshold);
+
+
+
+		if (update_values[3] == 5) { update_values[3] = 0; }
+
+		for (std::vector<T> v : nV) {
+
+			//We initialize whith values calculated at nV and last calculated updateValues [[3;; 4]] *)
+			temporal_values = { v[0], v[1], update_values[2], update_values[3] };
+
+
+
+			for (T i = 0; i < iterations; i++)
+			{
+				temporal_values = upgrade_1d(temporal_values, p0, list_f1[j], list_f2[j], e_threshold, threshold * std::pow(2, -j));
+
+			}
+			list_temporal_values.push_back(temporal_values);
+		}
+
+		//Implementation of "pick temporal values, We only update updateValues with the tValue that converged
+		update_values = pickNewValues(list_temporal_values, e_threshold, condition);
+
+		//std::cout << p0 << ", " << update_values[0] << ", " << update_values[1] << std::endl;
+		list_temporal_values.clear();
+	}
+
+	std::vector<float> solution_v;
+	solution_v.reserve(4);
+
+
+
+	for (int i = 0; i < 4; i++) {
+		solution_v.push_back(update_values[i]);
+	}
+	assert(solution_v.size() == 4);
+
+	return solution_v;
+}
+
+
+
+
 
 std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold = 0, double threshold = 0.01, int iterations = 10);
 
