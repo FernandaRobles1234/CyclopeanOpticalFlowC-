@@ -290,96 +290,96 @@
 //	return solution_v;
 //}
 
-std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold, double threshold, int iterations) {
-
-	int list_v0_size = (int)list_v0.size();
-
-	std::vector<std::vector<double>> nV;
-	nV.reserve(list_v0_size);
-
-	std::vector<double> update_values{ 0,0,0,0 };
-
-	std::vector<double> temporal_values;
-	temporal_values.reserve(update_values.size());
-
-	std::vector<std::vector<double>> list_temporal_values;
-	list_temporal_values.reserve(list_v0_size);
-
-
-	//pyramidal loop
-	for (int j = list_f1.size() - 1; j >= 0; j--) {
-		//This will only give values that sum up to the magnitude of v Or if v0 = 0, list newv0 is created and fed to the function to try all it's contained values
-		nV = new_values(list_v0, list_v0_size, update_values, e_threshold);
-
-		if (update_values[3] == 5) { update_values[3] = 0; }
-
-		for (std::vector<double> v : nV) {
-
-			//We initialize whith values calculated at nV and last calculated updateValues [[3;; 4]] *)
-			temporal_values = { v[0], v[1], update_values[2], update_values[3] };
-
-
-
-			for (int i = 0; i < iterations; i++) {
-				temporal_values = upgrade_1d(temporal_values, p0, list_f1[j], list_f2[j], e_threshold, threshold * std::pow(2, -j));
-
-			}
-			list_temporal_values.push_back(temporal_values);
-		}
-
-		//Implementation of "pick temporal values, We only update updateValues with the tValue that converged
-		update_values = pickNewValues(list_temporal_values, e_threshold, [](float v1, float v2) {
-			return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0);
-			});
-
-		//std::cout << p0 << ", " << update_values[0] << ", " << update_values[1] << std::endl;
-		list_temporal_values.clear();
-	}
-
-	std::vector<double> solution_v;
-	solution_v.reserve(4);
-
-
-
-	for (int i = 0; i < 4; i++) {
-		solution_v.push_back(update_values[i]);
-	}
-
-	assert(solution_v.size() == 4);
-
-	return solution_v;
-}
-
-std::vector<double> cyclopeanOpticalFlowPoint(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double p0, int e_threshold, double threshold) {
-
-	//flow_1d_v0 output is 4
-	std::vector<double> v;
-	v.reserve(4);
-
-	v = pyr_flow_1d_v0(iterations, list_v0, p0, list_f1, list_f2, e_threshold, threshold);
-
-	return v;
-}
-
-std::vector<std::vector<double>> cyclopeanOpticalFlowRow(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double start, double end, int e_threshold, double threshold) {
-
-	//flow_1d_v0 output is 4
-	std::vector<double> v;
-	v.reserve(4);
-
-	std::vector<std::vector<double>> list_v;
-	list_v.reserve(end - 1);
-
-	for (double x = start; x < end; x++) {
-		
-		
-		v = pyr_flow_1d_v0(iterations, list_v0, x, list_f1, list_f2, e_threshold, threshold);
-
-		list_v.push_back(v);
-
-	}
-
-	return list_v;
-}
-
-
+//std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold, double threshold, int iterations) {
+//
+//	int list_v0_size = (int)list_v0.size();
+//
+//	std::vector<std::vector<double>> nV;
+//	nV.reserve(list_v0_size);
+//
+//	std::vector<double> update_values{ 0,0,0,0 };
+//
+//	std::vector<double> temporal_values;
+//	temporal_values.reserve(update_values.size());
+//
+//	std::vector<std::vector<double>> list_temporal_values;
+//	list_temporal_values.reserve(list_v0_size);
+//
+//
+//	//pyramidal loop
+//	for (int j = list_f1.size() - 1; j >= 0; j--) {
+//		//This will only give values that sum up to the magnitude of v Or if v0 = 0, list newv0 is created and fed to the function to try all it's contained values
+//		nV = new_values(list_v0, list_v0_size, update_values, e_threshold);
+//
+//		if (update_values[3] == 5) { update_values[3] = 0; }
+//
+//		for (std::vector<double> v : nV) {
+//
+//			//We initialize whith values calculated at nV and last calculated updateValues [[3;; 4]] *)
+//			temporal_values = { v[0], v[1], update_values[2], update_values[3] };
+//
+//
+//
+//			for (int i = 0; i < iterations; i++) {
+//				temporal_values = upgrade_1d(temporal_values, p0, list_f1[j], list_f2[j], e_threshold, threshold * std::pow(2, -j));
+//
+//			}
+//			list_temporal_values.push_back(temporal_values);
+//		}
+//
+//		//Implementation of "pick temporal values, We only update updateValues with the tValue that converged
+//		update_values = pickNewValues(list_temporal_values, e_threshold, [](float v1, float v2) {
+//			return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0);
+//			});
+//
+//		//std::cout << p0 << ", " << update_values[0] << ", " << update_values[1] << std::endl;
+//		list_temporal_values.clear();
+//	}
+//
+//	std::vector<double> solution_v;
+//	solution_v.reserve(4);
+//
+//
+//
+//	for (int i = 0; i < 4; i++) {
+//		solution_v.push_back(update_values[i]);
+//	}
+//
+//	assert(solution_v.size() == 4);
+//
+//	return solution_v;
+//}
+//
+//std::vector<double> cyclopeanOpticalFlowPoint(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double p0, int e_threshold, double threshold) {
+//
+//	//flow_1d_v0 output is 4
+//	std::vector<double> v;
+//	v.reserve(4);
+//
+//	v = pyr_flow_1d_v0(iterations, list_v0, p0, list_f1, list_f2, e_threshold, threshold);
+//
+//	return v;
+//}
+//
+//std::vector<std::vector<double>> cyclopeanOpticalFlowRow(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double start, double end, int e_threshold, double threshold) {
+//
+//	//flow_1d_v0 output is 4
+//	std::vector<double> v;
+//	v.reserve(4);
+//
+//	std::vector<std::vector<double>> list_v;
+//	list_v.reserve((int)end - 1);
+//
+//	for (double x = start; x < end; x++) {
+//		
+//		
+//		v = pyr_flow_1d_v0(iterations, list_v0, x, list_f1, list_f2, e_threshold, threshold);
+//
+//		list_v.push_back(v);
+//
+//	}
+//
+//	return list_v;
+//}
+//
+//

@@ -161,7 +161,7 @@ TEST(cyclopeanOpticalFlow, newValuesTest1) {
 	listV0 = uniformDistribution2D(size, minNumber, maxNumber, true);
 
 	std::vector<float> v0 = { 0.0, 0.0, 0.0, 0.0 };
-	float e_threshold = 0;
+	int e_threshold = 0;
 	Matrix2D<float> newListV0;
 
 	newListV0= new_values(listV0, size, v0, e_threshold);
@@ -194,7 +194,7 @@ TEST(cyclopeanOpticalFlow, newValuesTest2) {
 	listV0 = uniformDistribution2D(size, minNumber, maxNumber, true);
 
 	std::vector<float> v0 = { 0.0, 0.0, 1.0, 0.0};
-	float e_threshold = 0;
+	int e_threshold = 0;
 	Matrix2D<float> newListV0;
 
 	newListV0 = new_values(listV0, size, v0, e_threshold);
@@ -215,8 +215,8 @@ TEST(cyclopeanOpticalFlow, newValuesTest2) {
 	EXPECT_TRUE(criteria);
 }
 TEST(cyclopeanOpticalFlow, newValuesTest3) {
-	float minNumber = 2.0;
-	float maxNumber = 5.0;
+	float minNumber = 2.0f;
+	float maxNumber = 5.0f;
 
 	int size = 10;
 
@@ -225,9 +225,10 @@ TEST(cyclopeanOpticalFlow, newValuesTest3) {
 
 	listV0 = uniformDistribution2D(size, minNumber, maxNumber, true);
 
-	std::vector<float> v0 = { 3.0, 3.0, 0.0, 0.0 };
-	float e_threshold = 0;
+	std::vector<float> v0 = { 3.0f, 3.0f, 0, 0.0f };
+	int e_threshold = 0;
 	Matrix2D<float> newListV0;
+	newListV0.reserve(size);
 
 	newListV0 = new_values(listV0, size, v0, e_threshold, true);
 
@@ -260,9 +261,11 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
 		{ 7.0, 3.0, 1.0, 5.0 },
 		{ 0.0, 1.0, 5.0, 5.0 } };
 
-	v0 = pickNewValues(listV0, 0, [](float v1, float v2) {
+	auto lambda = [](float v1, float v2) -> bool {
 		return (v1 * v2 > 0 && v1 + v2 >= 0 && v1 + v2 <= 5);
-		});
+	};
+
+	v0 = pickNewValues(listV0, 0, lambda);
 
 	bool criteria = isEqualL(v0[0], 0.0f) && isEqualL(v0[1], 0.0f);
 	
@@ -277,9 +280,11 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest2) {
 		{ 7.0, 0.0, 0.0, 0.0 },
 		{ 0.000001, 0.000002, 0.0, 0.0 } };
 
-	v0 = pickNewValues(listV0, 0, [](float v1, float v2) {
+	auto lambda = [](float v1, float v2)  -> bool {
 		return (v1 * v2 > 0 && v1 + v2 >= 0 && v1 + v2 <= 5);
-		});
+	};
+
+	v0 = pickNewValues(listV0, 0, lambda);
 
 	bool criteria = isEqualL(v0[0], 0.0f) && isEqualL(v0[1], 0.0f);
 
@@ -292,9 +297,12 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest3) {
 		{2.5, 2.5, 0.0, 5.0},
 		{5.0, 0.0, 0.0, 5.0} };
 
-	v0 = pickNewValues(listV0, 0, [](float v1, float v2) {
+	auto lambda = [](float v1, float v2) -> bool {
 		return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0);
-		});
+	};
+
+
+	v0 = pickNewValues(listV0, 0, lambda);
 
 	bool criteria = isEqualL(v0[0], 2.5f) && isEqualL(v0[1], 2.5f);
 
@@ -310,9 +318,11 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest4) {
 
 	int e_threshold = 1;
 
-	v0 = pickNewValues(listV0, e_threshold, [](float v1, float v2) {
+	auto lambda = [](float v1, float v2)  -> bool {
 		return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0);
-		});
+	};
+
+	v0 = pickNewValues(listV0, e_threshold, lambda);
 
 	bool criteria = isEqualL(v0[0], 5.0f) && isEqualL(v0[1], 0.0f);
 
@@ -368,7 +378,69 @@ TEST(cyclopeanOpticalFlow, upgrade_1dTest2) {
 	EXPECT_TRUE(true);
 }
 
+TEST(cyclopeanOpticalFlow, upgrade_1dTest3) {
+	std::vector<double> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+	std::vector<double> v2 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	std::vector<fun<double>> f1 = generatePyramidFunctionLevels(v1, 0);
+	std::vector<fun<double>> f2 = generatePyramidFunctionLevels(v2, 0);
+
+
+	std::vector<double> v0 = { 0.0, 0.0, 0.0, 0.0 };
+	double p0 = 15;
+	int e_threshold = 0;
+	double threshold = 0.001;
+
+	v0 = upgrade_1d(v0, p0, f1[0], f2[0], e_threshold, threshold);
+
+	Matrix2D<double> v0List = { v0 };
+
+	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+
+	EXPECT_TRUE(true);
+}
+
 TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test1) {
+	int size = 10;
+
+	double minNumber = 0.0;
+	double maxNumber = 2.0;
+
+	Matrix2D<double> listV0;
+	listV0.reserve(size);
+
+	listV0 = uniformDistribution2D(size, minNumber, maxNumber, true);
+
+	std::vector<double> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+	std::vector<double> v2 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	std::vector<fun<double>> f1 = generatePyramidFunctionLevels(v1, 0);
+	std::vector<fun<double>> f2 = generatePyramidFunctionLevels(v2, 0);
+
+
+	std::vector<double> v0 = { 0.0f, 0.0f, 0.0f, 0.0f };
+	double p0 = 10;
+	int e_threshold = 0;
+	double threshold = 0.001;
+
+	auto lambda = [](double v1, double v2) -> bool {
+		return true;
+	};
+
+	v0= pyr_flow_1d_v0(lambda,
+		listV0, p0, f1, f2, e_threshold, threshold);
+
+	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+
+	EXPECT_TRUE(true);
+}
+
+
+TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test2) {
 	int size = 10;
 
 	float minNumber = 0.0;
@@ -393,10 +465,51 @@ TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test1) {
 	int e_threshold = 0;
 	float threshold = 0.001;
 
-	v0= pyr_flow_1d_v0([](float v1, float v2) {return (v1 * v2 >= 0.0 && v1 + v2 >= 0.0 && v1 + v2 <= 5.0); },
+	auto lambda = [](float v1, float v2) -> bool {
+		return true;
+	};
+
+	v0 = pyr_flow_1d_v0(lambda,
 		listV0, p0, f1, f2, e_threshold, threshold);
 
-	displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+
+	EXPECT_TRUE(true);
+}
+
+TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test3) {
+	int size = 10;
+
+	float minNumber = 0.0;
+	float maxNumber = 2.0;
+
+	Matrix2D<float> listV0;
+	listV0.reserve(size);
+
+	listV0 = uniformDistribution2D(size, minNumber, maxNumber, true);
+
+	std::vector<float> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+	std::vector<float> v2 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	std::vector<fun<float>> f1 = generatePyramidFunctionLevels(v1, 0);
+	std::vector<fun<float>> f2 = generatePyramidFunctionLevels(v2, 0);
+
+
+	std::vector<float> v0 = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float p0 = 15;
+	int e_threshold = 0;
+	float threshold = 0.001;
+
+	auto lambda = [](float v1, float v2) -> bool {
+		return true;
+	};
+
+	v0 = pyr_flow_1d_v0(lambda,
+		listV0, p0, f1, f2, e_threshold, threshold);
+
+	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
 
 	EXPECT_TRUE(true);
 }

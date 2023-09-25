@@ -4,12 +4,16 @@
 #include "tools.h"
 #include "pyramid.h"
 
+#include <functional>
+
+// Define Condition as a std::function with the specified signature
+//using Condition = std::function<bool(float, float)>;
+
 
 template<class T>
 Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T>& v0, int e_threshold, bool testingMode= false) {
 
 	// Create a random number generator
-	 // Create a random number generator
 	std::mt19937 gen;
 	if (testingMode == true) {
 		gen = std::mt19937(FIXED_SEED);
@@ -29,6 +33,7 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 	T f = v0[3];
 
 	T v = v1 + v2;
+	
 
 	// Create a uniform real distribution object
 	std::uniform_real_distribution<T> dist(0, v);
@@ -57,7 +62,7 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 
 			} while (!isEqualL(v, distance));
 
-			list_new_v0.push_back({ x,y });
+			list_new_v0.push_back({ x, y});
 		}
 
 		return list_new_v0;
@@ -105,13 +110,13 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 		return ok_values[0];
 	}
 	else {
-		return { 0, 0, random_values[0][2], random_values[0][3] };
+		return { 0.0, 0.0, random_values[0][2], random_values[0][3] };
 	}
 }
 
 
 template<class T>
-std::vector<T> upgrade_1d(const std::vector<T>& v0, T p0, fun<T> f1, fun<T> f2, int e_threshold, T threshold) {
+std::vector<T> upgrade_1d(std::vector<T> v0, T p0, fun<T> f1, fun<T> f2, int e_threshold, T threshold) {
 
 	std::vector<T> v;
 	v.reserve(4);
@@ -234,44 +239,50 @@ std::vector<T> upgrade_1d(const std::vector<T>& v0, T p0, fun<T> f1, fun<T> f2, 
 	}
 }
 
+template<class T1>
+void type_test(T1 v0) {
+	const std::type_info& type = typeid(T1);
+	std::cout << "Type of x: " << type.name() << std::endl;
+}
+
 
 template<class T, class Condition>
-std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T p0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2, int e_threshold, T threshold, T iterations= 10) {
+std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T p0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2, int e_threshold, T threshold, int iterations= 10) {
 
 	int nv_size = (int)list_v0.size();
 
-	std::vector<std::vector<T>> nV;
+	Matrix2D<T> nV;
 	nV.reserve(nv_size);
 
 	Matrix2D<T> list_temporal_values;
 	list_temporal_values.reserve(nv_size);
 
-	std::vector<T> update_values{ 0,0,0,0 };
+	std::vector<T> update_values{ 0.0, 0.0, 0.0, 0.0};
 
 	std::vector<T> temporal_values;
 	temporal_values.reserve(update_values.size());
 
 
 	//pyramidal loop
-	for (T j = list_f1.size() - 1; j >= 0.0 ; j--) {
+	for (int j = list_f1.size() - 1; j >= 0.0 ; j--) {
 		//This will only give values that sum up to the magnitude of v Or if v0 = 0, list newv0 is created and fed to the function to try all it's contained values
 		nV = new_values(list_v0, nv_size, update_values, e_threshold);
 
 
 
-		if (update_values[3] == 5) { update_values[3] = 0; }
+		if (update_values[3] == 5.0) {update_values[3] = 0.0;}
 
 		for (std::vector<T> v : nV) {
 
 			//We initialize whith values calculated at nV and last calculated updateValues [[3;; 4]] *)
-			temporal_values = { v[0], v[1], update_values[2], update_values[3] };
+			temporal_values = { v[0], v[1], update_values[2], update_values[3]};
 
 
 
-			for (T i = 0; i < iterations; i++)
+			for (int i = 0; i < iterations; i++)
 			{
-				temporal_values = upgrade_1d(temporal_values, p0, list_f1[j], list_f2[j], e_threshold, threshold * std::pow(2, -j));
-
+				temporal_values = upgrade_1d(temporal_values, p0, list_f1[j], list_f2[j], e_threshold, (T)(threshold * std::pow(2, -j)));
+				//type_test((T) (threshold * std::pow(2, -j)));
 			}
 			list_temporal_values.push_back(temporal_values);
 		}
@@ -283,7 +294,7 @@ std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T
 		list_temporal_values.clear();
 	}
 
-	std::vector<float> solution_v;
+	std::vector<T> solution_v;
 	solution_v.reserve(4);
 
 
@@ -300,8 +311,8 @@ std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T
 
 
 
-std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold = 0, double threshold = 0.01, int iterations = 10);
+//std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold = 0, double threshold = 0.01, int iterations = 10);
 
-std::vector<std::vector<double>> cyclopeanOpticalFlowRow(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double start, double end, int e_threshold = 0, double threshold = 0.01);
+//std::vector<std::vector<double>> cyclopeanOpticalFlowRow(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double start, double end, int e_threshold = 0, double threshold = 0.01);
 
-std::vector<double> cyclopeanOpticalFlowPoint(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double p0, int e_threshold = 0, double threshold = 0.01);
+//std::vector<double> cyclopeanOpticalFlowPoint(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double p0, int e_threshold = 0, double threshold = 0.01);

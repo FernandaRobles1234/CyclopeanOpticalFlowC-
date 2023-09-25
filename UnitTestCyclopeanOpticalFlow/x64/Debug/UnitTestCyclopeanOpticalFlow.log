@@ -4,47 +4,55 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(167,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(200,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(232,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(278,36): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(281,36): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(324,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(334,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(326,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(336,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(336,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(349,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(346,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(359,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(351,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(361,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(360,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(383,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(370,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(455,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(385,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(457,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(394,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(466,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(492,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(494,74): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(503,25): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\Image.h(24,75): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\Image.h(24): message : while compiling class template member function 'cof::Image<float>::Image(const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &)'
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(117): message : see reference to function template instantiation 'cof::Image<float>::Image(const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &)' being compiled
@@ -52,52 +60,31 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\Image.h(62,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\Image.h(58): message : while compiling class template member function 'std::vector<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::allocator<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>>> cof::Image<float>::generatePyramidFunctionMatrix(int) const'
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(143): message : see reference to function template instantiation 'std::vector<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::allocator<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>>> cof::Image<float>::generatePyramidFunctionMatrix(int) const' being compiled
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(139,6): warning C4244: 'initializing': conversion from 'double' to 'T', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(144,6): warning C4244: 'initializing': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(338): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> upgrade_1d<float>(const std::vector<float,std::allocator<float>> &,T,boost::math::interpolators::cardinal_cubic_b_spline<float>,boost::math::interpolators::cardinal_cubic_b_spline<float>,int,T)' being compiled
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(348): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> upgrade_1d<float>(std::vector<float,std::allocator<float>>,T,boost::math::interpolators::cardinal_cubic_b_spline<float>,boost::math::interpolators::cardinal_cubic_b_spline<float>,int,T)' being compiled
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(169,1): warning C4305: 'initializing': truncation from 'double' to 'T'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(174,1): warning C4305: 'initializing': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(181,5): warning C4244: 'initializing': conversion from 'int' to 'T', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(186,5): warning C4244: 'initializing': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(256,11): warning C4244: 'initializing': conversion from 'unsigned __int64' to 'T', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(267,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(435): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pyr_flow_1d_v0<double,cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_66d90b4a83a0661bfde9f92b7296f69f>>(Condition,const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,T,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,int,T,int)' being compiled
           with
           [
-              T=float
+              Condition=cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_66d90b4a83a0661bfde9f92b7296f69f>,
+              T=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\UnitTestCyclopeanOpticalFlow\test.cpp(397): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> pyr_flow_1d_v0<float,cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_50bc7c4aa6bffa1fd1e9b66560954da2>>(Condition,const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &,T,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,int,T,T)' being compiled
-          with
-          [
-              Condition=cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_50bc7c4aa6bffa1fd1e9b66560954da2>,
-              T=float
-          ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,63): warning C4244: 'argument': conversion from 'T' to 'const unsigned __int64', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,75): warning C4244: 'argument': conversion from 'T' to 'const unsigned __int64', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,1): error C2672: 'upgrade_1d': no matching overloaded function found
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(114,16): message : could be 'std::vector<T,std::allocator<_Ty>> upgrade_1d(const std::vector<T,std::allocator<_Ty>> &,T,boost::math::interpolators::cardinal_cubic_b_spline<Real>,boost::math::interpolators::cardinal_cubic_b_spline<Real>,int,T)'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,23): message : 'std::vector<T,std::allocator<_Ty>> upgrade_1d(const std::vector<T,std::allocator<_Ty>> &,T,boost::math::interpolators::cardinal_cubic_b_spline<Real>,boost::math::interpolators::cardinal_cubic_b_spline<Real>,int,T)': template parameter 'T' is ambiguous
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(114): message : see declaration of 'upgrade_1d'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,1): message : could be 'double'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,1): message : or       'float'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(273,23): message : 'std::vector<T,std::allocator<_Ty>> upgrade_1d(const std::vector<T,std::allocator<_Ty>> &,T,boost::math::interpolators::cardinal_cubic_b_spline<Real>,boost::math::interpolators::cardinal_cubic_b_spline<Real>,int,T)': could not deduce template argument for 'T' from 'double'
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(114): message : see declaration of 'upgrade_1d'
+  UnitTestCyclopeanOpticalFlow.vcxproj -> C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlow\x64\Debug\UnitTestCyclopeanOpticalFlow.exe
