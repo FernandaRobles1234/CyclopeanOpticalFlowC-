@@ -252,7 +252,6 @@ TEST(cyclopeanOpticalFlow, newValuesTest3) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
 	std::vector<float> v0;
 	Matrix2D<float> listV0 = { { 3.0, 2.0, 2.0, 5.0 },
@@ -271,7 +270,6 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest1) {
 	
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, pickNewValuesTest2) {
 	std::vector<float> v0;
 	Matrix2D<float> listV0 = { { 3.0, 3.0, 0.0, 0.0 },
@@ -290,7 +288,6 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest2) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, pickNewValuesTest3) {
 	std::vector<float> v0;
 	Matrix2D<float> listV0 = { {2.0, 2.0, 0.0, 0.0}, 
@@ -308,7 +305,6 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest3) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, pickNewValuesTest4) {
 	std::vector<float> v0;
 	Matrix2D<float> listV0 = { {2.0, 2.0, 0.0, 0.0},
@@ -328,7 +324,6 @@ TEST(cyclopeanOpticalFlow, pickNewValuesTest4) {
 
 	EXPECT_TRUE(criteria);
 }
-
 TEST(cyclopeanOpticalFlow, upgrade_1dTest1) {
 	std::vector<float> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
 		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
@@ -353,7 +348,6 @@ TEST(cyclopeanOpticalFlow, upgrade_1dTest1) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(cyclopeanOpticalFlow, upgrade_1dTest2) {
 	std::vector<float> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
 		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
@@ -377,7 +371,6 @@ TEST(cyclopeanOpticalFlow, upgrade_1dTest2) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(cyclopeanOpticalFlow, upgrade_1dTest3) {
 	std::vector<double> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
 		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
@@ -401,7 +394,6 @@ TEST(cyclopeanOpticalFlow, upgrade_1dTest3) {
 
 	EXPECT_TRUE(true);
 }
-
 TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test1) {
 	int size = 10;
 
@@ -438,7 +430,6 @@ TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test1) {
 
 	EXPECT_TRUE(true);
 }
-
 
 TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test2) {
 	int size = 10;
@@ -510,6 +501,41 @@ TEST(cyclopeanOpticalFlow, pyr_flow_1d_v0Test3) {
 		listV0, p0, f1, f2, e_threshold, threshold);
 
 	//displayFlowPoint(p0, v0, f1[0], f2[0], 0, (int)v1.size());
+
+	EXPECT_TRUE(true);
+}
+
+TEST(cyclopeanOpticalFlow, cyclopeanOpticalFlowRow1) {
+	int size = 10;
+
+	float minNumber = 0.0;
+	float maxNumber = 2.0;
+
+	Matrix2D<float> listV0;
+	listV0.reserve(size);
+
+	listV0 = uniformDistribution2D(size, minNumber, maxNumber, true);
+
+	std::vector<float> v1 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+	std::vector<float> v2 = { 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.0993805, 0.90062, 1., 1., 1.,
+		1., 1., 1., 0.90062, 0.0993805, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0. };
+
+	std::vector<fun<float>> f1 = generatePyramidFunctionLevels(v1, 0);
+	std::vector<fun<float>> f2 = generatePyramidFunctionLevels(v2, 0);
+
+	Matrix2D<float> vRow;
+	int e_threshold = 0;
+	float threshold = 0.001;
+
+	auto lambda = [](float v1, float v2) -> bool {
+		return true;
+	};
+
+	vRow = cyclopeanOpticalFlowRow(lambda, listV0, f1, f2, e_threshold, threshold, 0.0f, (float)v1.size());
+
+	displayFlowLine(vRow, f1[0], f2[0], 0.0f, (float)v1.size());
+	
 
 	EXPECT_TRUE(true);
 }

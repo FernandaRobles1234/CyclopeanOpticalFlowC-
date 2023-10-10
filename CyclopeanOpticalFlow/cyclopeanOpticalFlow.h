@@ -4,11 +4,12 @@
 #include "tools.h"
 #include "pyramid.h"
 
-#include <functional>
-
-// Define Condition as a std::function with the specified signature
-//using Condition = std::function<bool(float, float)>;
-
+//This function is for debugging templates
+template<class T1>
+void type_test(T1 v0) {
+	const std::type_info& type = typeid(T1);
+	std::cout << "Type of x: " << type.name() << std::endl;
+}
 
 template<class T>
 Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T>& v0, int e_threshold, bool testingMode= false) {
@@ -24,17 +25,19 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 	}
 
 	std::vector<T> new_v0;
+	//Hardcoded value representinv v1 and v2
+	new_v0.reserve(2);
+
 	Matrix2D<T> list_new_v0;
 	list_new_v0.reserve(size);
 
 	T v1 = v0[0];
 	T v2 = v0[1];
-	T e = v0[2];
-	T f = v0[3];
+	int e = v0[2];
+	int f = v0[3];
 
 	T v = v1 + v2;
 	
-
 	// Create a uniform real distribution object
 	std::uniform_real_distribution<T> dist(0, v);
 
@@ -88,10 +91,10 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 
 		T v1 = v0[0];
 		T v2 = v0[1];
-		T e = v0[2];
-		T f = v0[3];
+		int e = v0[2];
+		int f = v0[3];
 
-		if ((T)f == 5 && e <= e_threshold && condition(v1, v2)) {
+		if (f == 5 && e <= e_threshold && condition(v1, v2)) {
 			converged_values.push_back(v0);
 		}
 		else if (e <= e_threshold && condition(v1, v2)) {
@@ -116,25 +119,25 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 
 
 template<class T>
-std::vector<T> upgrade_1d(std::vector<T> v0, T p0, fun<T> f1, fun<T> f2, int e_threshold, T threshold) {
+std::vector<T> upgrade_1d(std::vector<T> v0, int p0, fun<T> f1, fun<T> f2, int e_threshold, T threshold) {
 
 	std::vector<T> v;
 	v.reserve(4);
 
 	T v1 = v0[0];
 	T v2 = v0[1];
-	T e = v0[2];
-	T f = v0[3];
+	int e = v0[2];
+	int f = v0[3];
 
 	// True if: Error limit is reached (for pyramidal implementation)
 	if (e > e_threshold) {
-		v = { 0, 0, e, f };
+		v = { (T)0, (T)0, (T)e, (T)f};
 		return v;
 	}
 
 	// True if: Error for this pixel instance has been encountered once
 	if (f != 0) {
-		v = { v1, v2, e, f };
+		v = { (T)v1, (T)v2,(T)e, (T)f };
 		return v;
 	}
 
@@ -146,7 +149,7 @@ std::vector<T> upgrade_1d(std::vector<T> v0, T p0, fun<T> f1, fun<T> f2, int e_t
 
 	//True if: Gradient sending us to the edge
 	if (p1 < 0 || p2 < 0) {
-		v = { v1, v2, e + 1, 4 };
+		v = { (T)v1, (T)v2, (T)(e + 1), (T)4};
 		return v;
 	}
 
@@ -161,13 +164,13 @@ std::vector<T> upgrade_1d(std::vector<T> v0, T p0, fun<T> f1, fun<T> f2, int e_t
 
 	//True if: Not enought gradient
 	if (abs(d1) < threshold || abs(d2) < threshold) {
-		v = { v1, v2, e + 1, 1 };
+		v = { (T)v1, (T)v2, (T)(e + 1), (T)1};
 		return v;
 	}
 
 	//True if: Different sign encountered 
 	if (d1 * d2 < 0) {
-		v = { v1, v2, e + 1, 2 };
+		v = { (T)v1, (T)v2, (T)(e + 1), (T)2 };
 		return v;
 	}
 
@@ -205,7 +208,7 @@ std::vector<T> upgrade_1d(std::vector<T> v0, T p0, fun<T> f1, fun<T> f2, int e_t
 
 	//Not good correlation score
 	if (p_correlation < c_criteria) {
-		v = { v1, v2, e + 1, 3 };
+		v = { (T)v1, (T)v2, (T)(e + 1), (T)3 };
 		return v;
 	}
 
@@ -230,24 +233,18 @@ std::vector<T> upgrade_1d(std::vector<T> v0, T p0, fun<T> f1, fun<T> f2, int e_t
 	T norm = L2Norm(dv);
 
 	if (norm < 0.01) {
-		v = { v1 + dv1, v2 + dv2, e, 5 };
+		v = { (T)(v1 + dv1), (T)(v2 + dv2), (T)e, (T)5 };
 		return v;
 	}
 	else {
-		v = { v1 + dv1, v2 + dv2, e, f };
+		v = { (T)(v1 + dv1), (T)(v2 + dv2), (T)e, (T)f };
 		return v;
 	}
-}
-
-template<class T1>
-void type_test(T1 v0) {
-	const std::type_info& type = typeid(T1);
-	std::cout << "Type of x: " << type.name() << std::endl;
 }
 
 
 template<class T, class Condition>
-std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T p0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2, int e_threshold, T threshold, int iterations= 10) {
+std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, int p0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2, int e_threshold, T threshold, int iterations= 10) {
 
 	int nv_size = (int)list_v0.size();
 
@@ -308,11 +305,23 @@ std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, T
 }
 
 
+template<class T, class Condition>
+Matrix2D<T> cyclopeanOpticalFlowRow(Condition condition, const Matrix2D<T>& list_v0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2,  int e_threshold, T threshold, size_t start, size_t end, int iterations = 10) {
 
+	std::vector<T> v;
+	v.reserve(4);
 
+	Matrix2D<T> list_v;
+	list_v.reserve(end - 1);
 
-//std::vector<double> testPyramidalFlowPoint(const std::vector<std::vector<double>>& list_v0, double p0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, int e_threshold = 0, double threshold = 0.01, int iterations = 10);
+	for (auto x = start; x < end; x++) {
+		
+		v = pyr_flow_1d_v0(condition, list_v0, x, list_f1, list_f2, e_threshold, threshold);
 
-//std::vector<std::vector<double>> cyclopeanOpticalFlowRow(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double start, double end, int e_threshold = 0, double threshold = 0.01);
+		list_v.push_back(v);
 
-//std::vector<double> cyclopeanOpticalFlowPoint(int iterations, const std::vector<std::vector<double>>& list_v0, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f1, std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>> list_f2, double p0, int e_threshold = 0, double threshold = 0.01);
+	}
+
+	return list_v;
+}
+
