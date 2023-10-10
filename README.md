@@ -64,13 +64,12 @@ int e_threshold = 0;
 float threshold = 0.001;
 
 // Define a lambda function for personalized validation criteria.
-for (auto x = start; x < end; x++) {
-		
-		v = pyr_flow_1d_v0(condition, list_v0, x, list_f1, list_f2, e_threshold, threshold);
-
-		list_v.push_back(v);
-
-	}
+auto lambda = [](float v1, float v2) -> bool {
+if (v1 * v2 > 0 && v1 > 0 && v1 + v2 < 3) {
+return true;
+}
+return false;
+};
 
 
 // Save results in vRow
