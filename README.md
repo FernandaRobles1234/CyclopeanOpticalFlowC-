@@ -65,10 +65,10 @@ float threshold = 0.001;
 
 // Define a lambda function for personalized validation criteria.
 auto lambda = [](float v1, float v2) -> bool {
-if (v1 * v2 > 0 && v1 > 0 && v1 + v2 < 3) {
-return true;
-}
-return false;
+	if (v1 * v2 > 0 && v1 > 0 && v1 + v2 < 3) {
+		return true;
+	}
+	return false;
 };
 
 
