@@ -29,6 +29,8 @@ The program checks for incorrect file paths, ensuring users are alerted to poten
 
 ## Usage
 
+This implementation is still in development, but here is an example of how to obtain results or run a test for two lines, v1 and v2.
+
 ```cpp
 // Define the size of our matrix
 int size = 10;
