@@ -29,6 +29,7 @@ The program checks for incorrect file paths, ensuring users are alerted to poten
 
 ## Usage
 
+```cpp
 // Define the size of our matrix
 int size = 10;
 
@@ -67,6 +68,6 @@ auto lambda = [](float v1, float v2) -> bool {
 
 // ... (continue with other operations)
 
-
+```
 
 
