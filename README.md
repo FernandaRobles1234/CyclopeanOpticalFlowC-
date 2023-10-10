@@ -66,7 +66,11 @@ auto lambda = [](float v1, float v2) -> bool {
     return true;
 };
 
-// ... (continue with other operations)
+
+// Save results in vRow
+vRow = cyclopeanOpticalFlowRow(lambda, listV0, f1, f2, e_threshold, threshold, 0.0f, (float)v1.size());
+
+	displayFlowLine(vRow, f1[0], f2[0], 0.0f, (float)v1.size());
 
 ```
 
