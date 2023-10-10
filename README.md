@@ -63,10 +63,14 @@ Matrix2D<float> vRow;
 int e_threshold = 0;
 float threshold = 0.001;
 
-// Define a lambda function for further operations (this example always returns true)
-auto lambda = [](float v1, float v2) -> bool {
-    return true;
-};
+// Define a lambda function for personalized validation criteria.
+for (auto x = start; x < end; x++) {
+		
+		v = pyr_flow_1d_v0(condition, list_v0, x, list_f1, list_f2, e_threshold, threshold);
+
+		list_v.push_back(v);
+
+	}
 
 
 // Save results in vRow

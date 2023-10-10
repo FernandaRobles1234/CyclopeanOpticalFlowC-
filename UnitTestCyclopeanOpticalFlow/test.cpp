@@ -529,7 +529,11 @@ TEST(cyclopeanOpticalFlow, cyclopeanOpticalFlowRow1) {
 	float threshold = 0.001;
 
 	auto lambda = [](float v1, float v2) -> bool {
-		return true;
+		if (v1 * v2 > 0 && v1 > 0 && v1 + v2 < 3) {
+			return true;
+		}
+
+		return false;
 	};
 
 	vRow = cyclopeanOpticalFlowRow(lambda, listV0, f1, f2, e_threshold, threshold, 0.0f, (float)v1.size());
