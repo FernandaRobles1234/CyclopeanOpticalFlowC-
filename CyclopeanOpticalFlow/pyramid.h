@@ -2,6 +2,7 @@
 #include <vector>
 #include <boost/math/interpolators/cardinal_cubic_b_spline.hpp>
 
+//TODO: Maybe move definition of fun to a more general file related to functions
 //TODO: This all can be more optimized
 
 template<typename T>

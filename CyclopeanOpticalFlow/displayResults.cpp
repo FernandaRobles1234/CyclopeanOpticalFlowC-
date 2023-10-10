@@ -6,13 +6,13 @@
 
 //----------------------------------------------------Display Functions Optical Flow----------------------------------------------------
 
-int displayFlowLine(std::vector<std::vector<double>>& v, boost::math::interpolators::cardinal_cubic_b_spline<double> f1, boost::math::interpolators::cardinal_cubic_b_spline<double> f2, int start, int end) {
+int displayFlowLine(std::vector<std::vector<float>>& v, boost::math::interpolators::cardinal_cubic_b_spline<float> f1, boost::math::interpolators::cardinal_cubic_b_spline<float> f2, int start, int end) {
 
 	//We create x vector
-	double step = 0.5;
+	float step = 0.5;
 	int inverse_step = 2;
-	std::vector<double> x(end * (1 * inverse_step) - start * (1 * inverse_step));
-	double n = start;
+	std::vector<float> x(end * (1 * inverse_step) - start * (1 * inverse_step));
+	float n = start;
 	for (int i = 0; i < x.size(); i++) {
 		x[i] = n;
 		n = n + step;
@@ -20,13 +20,13 @@ int displayFlowLine(std::vector<std::vector<double>>& v, boost::math::interpolat
 
 
 	//We create y1 vector
-	std::vector<double> y1(x.size());
+	std::vector<float> y1(x.size());
 	for (int i = 0; i < y1.size(); i++) {
 		y1[i] = f1(x[i]);
 	}
 
 	//We create y2 vector
-	std::vector<double> y2(x.size());
+	std::vector<float> y2(x.size());
 	for (int i = 0; i < y2.size(); i++) {
 		y2[i] = f2(x[i]);
 	}
@@ -35,20 +35,20 @@ int displayFlowLine(std::vector<std::vector<double>>& v, boost::math::interpolat
 	matplotlibcpp::plot(x, y2);
 
 	// Flow vector
-	double y_c;
-	std::vector<double> x_p;
-	std::vector<double> y_p;
-	std::vector<double> x_dot;
-	std::vector<double> y_dot;
+	float y_c;
+	std::vector<float> x_p;
+	std::vector<float> y_p;
+	std::vector<float> x_dot;
+	std::vector<float> y_dot;
 
 	//The minus one is due to the fact that odd numbers are decreased by one
-	for (int p = start; p < end - 1; p++) {
+	for (float p = start; p < end - 1; p++) {
 
 		y_c = (f1(p) + f2(p)) / 2;
 		y_p = { y_c, y_c, y_c };
 
 
-		x_p = { p - v[p - start][0], (double)p, p + v[p - start][1] };
+		x_p = { p - v[p - start][0], (float)p, p + v[p - start][1] };
 
 		if (v[p][3] == 5) {
 			matplotlibcpp::plot(x_p, y_p, "green");
@@ -72,10 +72,84 @@ int displayFlowLine(std::vector<std::vector<double>>& v, boost::math::interpolat
 
 		//Attempt of dot
 		y_dot = { y_c, y_c };
-		x_dot = { p - 0.02, p + 0.02 };
+		x_dot = { p - 0.02f, p + 0.02f };
 		matplotlibcpp::plot(x_dot, y_dot, "r");
 
 	}
+
+	matplotlibcpp::show();
+
+	return 0;
+}
+
+int displayFlowPoint(float p0, std::vector<float>& v, boost::math::interpolators::cardinal_cubic_b_spline<float> f1, boost::math::interpolators::cardinal_cubic_b_spline<float> f2, int start, int end) {
+	//TODO: This could be replaced by display flow line?
+	//We create x vector
+	float step = 0.5;
+	int inverse_step = 2;
+	std::vector<float> x(end * (1 * inverse_step) - start * (1 * inverse_step));
+	float n = start;
+	for (int i = 0; i < x.size(); i++) {
+		x[i] = n;
+		n = n + step;
+	}
+
+
+	//We create y1 vector
+	std::vector<float> y1(x.size());
+	for (int i = 0; i < y1.size(); i++) {
+		y1[i] = f1(x[i]);
+	}
+
+	//We create y2 vector
+	std::vector<float> y2(x.size());
+	for (int i = 0; i < y2.size(); i++) {
+		y2[i] = f2(x[i]);
+	}
+
+	matplotlibcpp::plot(x, y1);
+	matplotlibcpp::plot(x, y2);
+
+	// Flow vector
+	float y_c;
+	std::vector<float> x_p;
+	std::vector<float> y_p;
+	std::vector<float> x_dot;
+	std::vector<float> y_dot;
+
+	//The minus one is due to the fact that odd numbers are decreased by one
+	float p = p0;
+
+	y_c = (f1(p) + f2(p)) / 2;
+	y_p = { y_c, y_c, y_c };
+
+
+	x_p = { p - v[0], (float)p, p + v[1] };
+
+	if (v[3] == 5) {
+		matplotlibcpp::plot(x_p, y_p, "green");
+	}
+	else if (v[3] == 0) {
+		matplotlibcpp::plot(x_p, y_p, "black");
+	}
+	else if (v[3] == 1) {
+		matplotlibcpp::plot(x_p, y_p, "purple");
+	}
+	else if (v[3] == 2) {
+		matplotlibcpp::plot(x_p, y_p, "red");
+	}
+	else if (v[3] == 3) {
+		matplotlibcpp::plot(x_p, y_p, "yellow");
+	}
+	else {
+		matplotlibcpp::plot(x_p, y_p, "pink");
+	}
+
+
+	//Attempt of dot
+	y_dot = { y_c, y_c };
+	x_dot = { p - 0.02f, p + 0.02f };
+	matplotlibcpp::plot(x_dot, y_dot, "r");
 
 	matplotlibcpp::show();
 

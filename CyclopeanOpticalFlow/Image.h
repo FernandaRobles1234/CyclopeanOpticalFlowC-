@@ -12,7 +12,7 @@ namespace cof {
 	class Image {
 		//TODO: How much should we reserve?
 		//TODO: Assert data.len > 5 
-		std::vector< std::vector<T>> imData;
+		Matrix2D<T> imData;
 		int rows;
 		int columns;
 
@@ -21,12 +21,12 @@ namespace cof {
 
 		Image(const cv::Mat& im);
 
-		Image(const std::vector<std::vector<T>>& imData) : imData(imData), rows(imData.size()), columns(imData[0].size()) {}
+		Image(const Matrix2D<T>& imData) : imData(imData), rows(imData.size()), columns(imData[0].size()) {}
 
 		//TODO: Make it so we can analize in between the continuous function
 		std::vector<fun<T>> generatePyramidFunctions(int row, int maxLevel) const;
 
-		std::vector<std::vector<fun<T>>> generatePyramidFunctionMatrix(int maxLevel) const;
+		Matrix2D<fun<T>> generatePyramidFunctionMatrix(int maxLevel) const;
 
 	};
 
@@ -55,8 +55,8 @@ namespace cof {
 	}
 
 	template <class T>
-	std::vector<std::vector<fun<T>>> Image<T>::generatePyramidFunctionMatrix(int maxLevel) const{
-		std::vector<std::vector<fun<T>>> solution;
+	Matrix2D<fun<T>> Image<T>::generatePyramidFunctionMatrix(int maxLevel) const{
+		Matrix2D<fun<T>> solution;
 
 		for (size_t row = 0; row < rows; row++) {
 			solution.push_back(this->generatePyramidFunctions(row, maxLevel));
