@@ -1,5 +1,4 @@
-﻿  pch.cpp
-  test.cpp
+﻿  test.cpp
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(79,78): warning C4305: 'initializing': truncation from 'double' to '_Ty'
           with
           [
@@ -75,25 +74,25 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(535,81): warning C4244: 'argument': conversion from 'float' to 'size_t', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(537,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(537,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(24,75): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(24): message : while compiling class template member function 'cof::Image<float>::Image(const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &)'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(31,75): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(31): message : while compiling class template member function 'cof::Image<float>::Image(const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &)'
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(117): message : see reference to function template instantiation 'cof::Image<float>::Image(const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &)' being compiled
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(117): message : see reference to class template instantiation 'cof::Image<float>' being compiled
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(62,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(58): message : while compiling class template member function 'std::vector<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::allocator<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>>> cof::Image<float>::generatePyramidFunctionMatrix(int) const'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(81,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\Image.h(76): message : while compiling class template member function 'std::vector<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::allocator<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>>> cof::Image<float>::generatePyramidFunctionMatrix(int) const'
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(143): message : see reference to function template instantiation 'std::vector<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::allocator<std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>>> cof::Image<float>::generatePyramidFunctionMatrix(int) const' being compiled
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(36,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(48,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
           with
           [
               _Ty=float
           ]
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(167): message : see reference to function template instantiation 'std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> new_values<float>(const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &,int,const std::vector<float,std::allocator<float>> &,int,bool)' being compiled
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(37,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(49,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(94,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(112,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=float
@@ -103,12 +102,12 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
           [
               Condition=cyclopeanOpticalFlow_pickNewValuesTest1_Test::TestBody::<lambda_734f37d051bb49f877a4bff9ac0e58a6>
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(95,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(113,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(129,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(157,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=float
@@ -118,37 +117,37 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(130,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(158,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(147,12): warning C4244: 'argument': conversion from 'int' to 'Real', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(175,12): warning C4244: 'argument': conversion from 'int' to 'Real', possible loss of data
           with
           [
               Real=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(147,21): warning C4244: 'argument': conversion from 'int' to 'Real', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(175,21): warning C4244: 'argument': conversion from 'int' to 'Real', possible loss of data
           with
           [
               Real=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(147,6): warning C4244: 'initializing': conversion from 'double' to 'T', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(175,6): warning C4244: 'initializing': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(177,1): warning C4305: 'initializing': truncation from 'double' to 'T'
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(205,1): warning C4305: 'initializing': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(189,5): warning C4244: 'initializing': conversion from 'int' to 'T', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(217,5): warning C4244: 'initializing': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(129,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(157,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=double
@@ -158,53 +157,53 @@ C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOptica
           [
               T=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(130,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(158,8): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(264,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(304,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(427): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pyr_flow_1d_v0<double,cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_f6aa1af3e68bebad8a4fb083daef190f>>(Condition,const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,int,T,int)' being compiled
           with
           [
               Condition=cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_f6aa1af3e68bebad8a4fb083daef190f>,
               T=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(319,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(372,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(535): message : see reference to function template instantiation 'std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> cyclopeanOpticalFlowRow<float,cyclopeanOpticalFlow_cyclopeanOpticalFlowRow1_Test::TestBody::<lambda_0adc13b909e36e95d6627a4923c27726>>(Condition,const std::vector<std::vector<float,std::allocator<float>>,std::allocator<std::vector<float,std::allocator<float>>>> &,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<float>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<float>>>,int,T,size_t,size_t,int)' being compiled
           with
           [
               Condition=cyclopeanOpticalFlow_cyclopeanOpticalFlowRow1_Test::TestBody::<lambda_0adc13b909e36e95d6627a4923c27726>,
               T=float
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(36,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(48,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
           with
           [
               _Ty=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(266): message : see reference to function template instantiation 'std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> new_values<double>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,const std::vector<double,std::allocator<double>> &,int,bool)' being compiled
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(306): message : see reference to function template instantiation 'std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> new_values<double>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,const std::vector<double,std::allocator<double>> &,int,bool)' being compiled
 C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\UnitTestCyclopeanOpticalFlow\test.cpp(427): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pyr_flow_1d_v0<double,cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_f6aa1af3e68bebad8a4fb083daef190f>>(Condition,const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,std::vector<boost::math::interpolators::cardinal_cubic_b_spline<double>,std::allocator<boost::math::interpolators::cardinal_cubic_b_spline<double>>>,int,T,int)' being compiled
           with
           [
               Condition=cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_f6aa1af3e68bebad8a4fb083daef190f>,
               T=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(37,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(49,8): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
           with
           [
               _Ty=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(94,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(112,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=double
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(288): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pickNewValues<double,Condition>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,Condition)' being compiled
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(328): message : see reference to function template instantiation 'std::vector<double,std::allocator<double>> pickNewValues<double,Condition>(const std::vector<std::vector<double,std::allocator<double>>,std::allocator<std::vector<double,std::allocator<double>>>> &,int,Condition)' being compiled
           with
           [
               Condition=cyclopeanOpticalFlow_pyr_flow_1d_v0Test1_Test::TestBody::<lambda_f6aa1af3e68bebad8a4fb083daef190f>
           ]
-C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(95,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\fieri\Documents\ProgrammingProyects\OpticalFlowProyects\CyclopeanOpticalFlowCpp\CyclopeanOpticalFlow\cyclopeanOpticalFlow.h(113,9): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
           with
           [
               _Ty=double
