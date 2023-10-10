@@ -2,6 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/CyclopeanOpticalFlow
+/.vs/CyclopeanOpticalFlowCpp
 /packages
 /x64/Debug

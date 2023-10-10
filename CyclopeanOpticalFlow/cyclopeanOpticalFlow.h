@@ -4,13 +4,25 @@
 #include "tools.h"
 #include "pyramid.h"
 
-//This function is for debugging templates
+/**
+ * Function for debugging template type.
+ * @param v0 Input value.
+ */
 template<class T1>
 void type_test(T1 v0) {
 	const std::type_info& type = typeid(T1);
 	std::cout << "Type of x: " << type.name() << std::endl;
 }
 
+/**
+ * Generate new 2D values based on a given list, some thresholds, and random generation.
+ * @param list_v0 Initial list of 2D values.
+ * @param size Number of values to generate.
+ * @param v0 2D point.
+ * @param e_threshold Threshold for early exit.
+ * @param testingMode Flag to set the randomness for testing.
+ * @return Matrix2D<T> containing new values.
+ */
 template<class T>
 Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T>& v0, int e_threshold, bool testingMode= false) {
 
@@ -75,9 +87,15 @@ Matrix2D<T> new_values(const Matrix2D<T>& list_v0, int size, const std::vector<T
 	}
 }
 
-
 //TODO: Fake converge case
 //TODO: pick the value with less e?
+/**
+ * Select the best set of values from the list based on certain conditions.
+ * @param listV0 List of potential values.
+ * @param e_threshold Threshold value for error consideration.
+ * @param condition Callable object to determine if a value set is acceptable.
+ * @return A vector representing the selected values.
+ */
 template<class T, class Condition>
 std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Condition condition) {
 	Matrix2D<T> converged_values;
@@ -118,6 +136,16 @@ std::vector<T> pickNewValues(const Matrix2D<T>& listV0, int e_threshold, Conditi
 }
 
 
+/**
+ * Upgrade the 1D values using various calculations and thresholds.
+ * @param v0 Current values.
+ * @param p0 Pixel intensity.
+ * @param f1 Function object for the left eye.
+ * @param f2 Function object for the right eye.
+ * @param e_threshold Error threshold.
+ * @param threshold Gradient threshold.
+ * @return Updated values.
+ */
 template<class T>
 std::vector<T> upgrade_1d(std::vector<T> v0, int p0, fun<T> f1, fun<T> f2, int e_threshold, T threshold) {
 
@@ -243,6 +271,18 @@ std::vector<T> upgrade_1d(std::vector<T> v0, int p0, fun<T> f1, fun<T> f2, int e
 }
 
 
+/**
+ * Compute the optical flow for a given 1D point using pyramidal approach.
+ * @param condition Callable object to check if a value set is acceptable.
+ * @param list_v0 Initial list of 2D values.
+ * @param p0 Pixel intensity.
+ * @param list_f1 List of function objects for the left eye.
+ * @param list_f2 List of function objects for the right eye.
+ * @param e_threshold Error threshold.
+ * @param threshold Gradient threshold.
+ * @param iterations Number of iterations for upgrading values.
+ * @return Best computed optical flow for the 1D point.
+ */
 template<class T, class Condition>
 std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, int p0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2, int e_threshold, T threshold, int iterations= 10) {
 
@@ -305,6 +345,19 @@ std::vector<T> pyr_flow_1d_v0(Condition condition, const Matrix2D<T>& list_v0, i
 }
 
 
+/**
+ * Computes cyclopean optical flow for a row of pixels.
+ * @param condition A lambda function or callable object that implements the desired condition.
+ * @param list_v0 The input matrix.
+ * @param list_f1 The list of first functions.
+ * @param list_f2 The list of second functions.
+ * @param e_threshold The threshold for iterations.
+ * @param threshold A value for comparison in the function.
+ * @param start The starting pixel value.
+ * @param end The ending pixel value.
+ * @param iterations The number of iterations to perform.
+ * @return The computed optical flow values for the row.
+ */
 template<class T, class Condition>
 Matrix2D<T> cyclopeanOpticalFlowRow(Condition condition, const Matrix2D<T>& list_v0, std::vector<fun<T>> list_f1, std::vector<fun<T>> list_f2,  int e_threshold, T threshold, size_t start, size_t end, int iterations = 10) {
 
